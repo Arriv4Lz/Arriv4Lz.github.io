@@ -3,131 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pathiphan | Computer Education Portfolio</title>
-    <!-- นำเข้าฟอนต์จาก Google Fonts -->
+    <title>Arriv4Lz | Dashboard Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #2563eb;
-            --secondary-color: #64748b;
-            --bg-color: #f8fafc;
+            --primary: #2563eb;
+            --bg: #f0f2f5;
+            --sidebar-width: 260px;
         }
+
         body {
             font-family: 'Kanit', sans-serif;
             margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-            color: #1e293b;
-            line-height: 1.6;
+            display: flex; /* ใช้ Flex เพื่อแยก Sidebar กับ Content */
+            background-color: var(--bg);
+            overflow-x: hidden;
         }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-        header {
-            text-align: center;
-            padding: 60px 0;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-            margin-bottom: 30px;
-        }
-        .profile-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            background: #e2e8f0;
-            margin-bottom: 20px;
-            border: 4px solid var(--primary-color);
-            object-fit: cover;
-        }
-        h1 { margin: 0; color: #0f172a; font-weight: 600; }
-        .subtitle { color: var(--primary-color); font-size: 1.2rem; font-weight: 400; margin-top: 5px; }
-        
-        .section {
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
-        }
-        h2 { border-left: 5px solid var(--primary-color); padding-left: 15px; margin-top: 0; }
-        
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-        .skill-item {
-            background: #eff6ff;
-            color: #1e40af;
-            padding: 10px;
-            border-radius: 10px;
-            text-align: center;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-        .btn-contact {
-            display: inline-block;
-            background: var(--primary-color);
+
+        /* --- 1. Sidebar (เมนูซ้าย) --- */
+        .sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: #1e293b;
             color: white;
-            padding: 12px 25px;
-            border-radius: 10px;
-            text-decoration: none;
-            margin-top: 20px;
-            transition: transform 0.2s;
+            position: fixed;
+            padding: 20px;
+            box-sizing: border-box;
         }
-        .btn-contact:hover { transform: translateY(-2px); }
-        footer { text-align: center; margin-top: 40px; color: var(--secondary-color); font-size: 0.8rem; }
+
+        .sidebar h2 {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: #38bdf8;
+            text-align: center;
+        }
+
+        .menu-item {
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: block;
+            color: #cbd5e1;
+            text-decoration: none;
+        }
+
+        .menu-item:hover {
+            background: #334155;
+            color: white;
+            transform: translateX(10px); /* อนิเมชั่นตอนชี้เมนู */
+        }
+
+        /* --- 2. Main Content (เนื้อหาขวา) --- */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            width: 100%;
+            padding: 40px;
+            min-height: 100vh;
+        }
+
+        /* --- 3. Animation (ตัวทำให้เว็บดูมีชีวิต) --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+            /* เรียกใช้แอนิเมชั่น */
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0; /* เริ่มต้นให้จางไว้ก่อน */
+        }
+
+        /* ตั้งเวลาให้แต่ละกล่องลอยขึ้นมาไม่พร้อมกัน (Stagger) */
+        .card:nth-child(1) { animation-delay: 0.2s; }
+        .card:nth-child(2) { animation-delay: 0.4s; }
+        .card:nth-child(3) { animation-delay: 0.6s; }
+
+        .card:hover {
+            transform: scale(1.02);
+            transition: 0.3s;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            background: #dcfce7;
+            color: #166534;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
     </style>
 </head>
 <body>
 
-<div class="container">
-    <!-- ส่วนหัวหน้าเว็บ -->
-    <header>
-        <!-- ถ้าโบมีรูปตัวเอง ให้เปลี่ยนชื่อไฟล์ที่ src="your-image.jpg" -->
-        <img src="https://via.placeholder.com/150" alt="Profile" class="profile-img">
-        <h1>ปฏิภาณ (Arriv4Lz)</h1>
-        <div class="subtitle">Computer Education & Web Developer</div>
-        <p>มุ่งมั่นพัฒนาการเรียนการสอนคอมพิวเตอร์ ด้วยเทคโนโลยีที่ทันสมัย</p>
-        <a href="mailto:อีเมลใหม่ของโบ@gmail.com" class="btn-contact">ติดต่องาน / ส่งอีเมล</a>
-    </header>
-
-    <!-- ส่วนประวัติสั้นๆ -->
-    <div class="section">
-        <h2>เกี่ยวกับผม</h2>
-        <p>สวัสดีครับ ผมเป็นคนที่มีความสนใจด้านเทคโนโลยีสารสนเทศและการศึกษา มีทักษะในการสร้างเว็บไซต์และจัดการระบบคอมพิวเตอร์ เป้าหมายของผมคือการนำความรู้ด้าน IT มาต่อยอดเพื่อพัฒนาสถานศึกษาและสร้างสรรค์สื่อการเรียนรู้ที่มีประสิทธิภาพ</p>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Arriv4Lz OS</h2>
+        <a href="#" class="menu-item">🏠 หน้าแรก</a>
+        <a href="#" class="menu-item">📁 ผลงานของฉัน</a>
+        <a href="#" class="menu-item">🎮 Roblox Project</a>
+        <a href="#" class="menu-item">⚙️ ตั้งค่า</a>
     </div>
 
-    <!-- ส่วนทักษะ -->
-    <div class="section">
-        <h2>ทักษะความสามารถ (Skills)</h2>
-        <div class="skills-grid">
-            <div class="skill-item">Web Development</div>
-            <div class="skill-item">Computer Graphics</div>
-            <div class="skill-item">Network Setup</div>
-            <div class="skill-item">AI Tools for Education</div>
-            <div class="skill-item">Microsoft Office Expert</div>
-            <div class="skill-item">Roblox Game Dev</div>
+    <!-- Main Content -->
+    <div class="main-content">
+        
+        <div class="card">
+            <span class="status-badge">ยินดีต้อนรับ</span>
+            <h1>สวัสดีครับโบ! นี่คือหน้าเว็บแบบมี Sidebar</h1>
+            <p>ลองสังเกตดูว่าตอนเปิดหน้าเว็บมา กล่องเหล่านี้จะค่อยๆ ลอยขึ้นมาทีละอัน นี่คือพลังของ <b>CSS Animation</b> ครับ</p>
         </div>
-    </div>
 
-    <!-- ส่วนผลงาน -->
-    <div class="section">
-        <h2>ผลงานที่ภาคภูมิใจ</h2>
-        <ul>
-            <li><strong>Personal Portfolio:</strong> พัฒนาเว็บไซต์ด้วย HTML/CSS และโฮสต์บน GitHub Pages</li>
-            <li><strong>Project 2:</strong> (ใส่ผลงานอื่น เช่น ระบบเช็คชื่อ หรือสื่อการสอนที่โบเคยทำ)</li>
-        </ul>
-    </div>
+        <div class="card">
+            <h2>ทำไมต้องมี Sidebar?</h2>
+            <p>การมีเมนูทางด้านซ้ายช่วยให้ผู้ใช้งานเข้าถึงส่วนต่างๆ ของเว็บได้ง่ายขึ้นมาก โดยเฉพาะเว็บที่มีเนื้อหาเยอะๆ เหมือนพวก Dashboard ของครูคอมฯ</p>
+        </div>
 
-    <footer>
-        © 2026 Pathiphan. Created with GitHub Pages.
-    </footer>
-</div>
+        <div class="card">
+            <h2>ลองเอาเมาส์มาชี้ที่กล่องสิ</h2>
+            <p>ผมใส่เอฟเฟกต์ <b>Hover</b> ไว้ด้วย เมื่อโบเอาเมาส์มาวาง กล่องมันจะขยายตัวขึ้นนิดหน่อย (Scale) และเงาจะเข้มขึ้น ทำให้เว็บดูโต้ตอบกับคนใช้ได้ดีขึ้นครับ</p>
+        </div>
+
+    </div>
 
 </body>
 </html>
