@@ -121,7 +121,7 @@
         font-family: 'Kanit';
         font-weight: 600;
         box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .toggle-btn:hover {
@@ -211,6 +211,76 @@
         transition: 0.3s;
     }
 
+    #home {
+        position: relative;
+        height: 100vh;
+        width: 100%;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* จัดการแผ่นภาพแต่ละแผ่น */
+    .bg-slide {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+        z-index: 1;
+
+        /* ใช้ตัวแปร CSS คุมความเบลอ เริ่มต้นที่ 0px (ชัด) */
+        filter: blur(var(--blur-amount, 0px)); 
+}
+
+    /* ภาพที่มีคลาส active จะแสดงขึ้นมา */
+    .bg-slide.active {
+        opacity: 1;
+    }
+
+    /* ตัวช่วยให้ข้อความเด่นขึ้น */
+    .overlay-fix {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 2;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 3;
+        text-align: center;
+        color: white;
+
+        /* --- ส่วนที่เพิ่มใหม่: กล่องกระจกฝ้า --- */
+        background: rgba(255, 255, 255, 0.1); /* สีขาวจางๆ */
+        backdrop-filter: none;          /* เบลอพื้นหลังที่อยู่หลังกล่อง */
+        -webkit-backdrop-filter: blur(10px);   /* รองรับ Safari */
+        padding: 40px 60px;                   /* ระยะห่างข้างในกล่อง */
+        border-radius: 24px;                  /* ขอบมน */
+        border: 1px solid rgba(255, 255, 255, 0.2); /* เส้นขอบบางๆ ให้ดูมีมิติ */
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);  /* เงาให้กล่องดูลอยออกมา */
+        
+        /* ควบคุมขนาดกล่องไม่ให้กว้างเกินไป */
+        max-width: 90%;
+        width: fit-content;
+}
+
+/* ปรับแต่งตัวหนังสือข้างในเพิ่มอีกนิดให้อ่านง่ายขึ้น */
+    .hero-content h1 {
+        font-size: 3rem;
+        margin-bottom: 10px;
+        text-shadow: none;
+}
+
+    .hero-content p {
+        font-size: 1.2rem;
+        opacity: 0.9;
+        color: #fff; /* บังคับสีขาว */
+}
+
     h1, h2 { color: var(--primary); } /* หัวข้อทั้งหมดจะเป็นสีม่วง */
     p { color: var(--text-sub); line-height: 1.8; font-size: 1.1rem; }
 
@@ -218,15 +288,163 @@
         .main-content.pushed { margin-left: 0; }
         .toggle-btn.active { left: calc(var(--sidebar-width) + 10px); }
     }
+
+    /* สร้าง Effect สีรุ้ง */
+.rgb-text {
+    /* สร้างแถบสีรุ้ง */
+    background: linear-gradient(
+        to left, 
+        #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff, #ff0000
+    );
+    /* บังคับให้สีไปแสดงแค่บนตัวอักษร */
+        -webkit-background-clip: text;
+        background-clip: text;
+        /* ทำให้สีตัวอักษรจริงใส เพื่อให้เห็น background ข้างหลัง */
+        color: transparent;
+        /* กำหนดขนาดพื้นหลังให้กว้างกว่าตัวอักษรเพื่อให้เลื่อนได้ */
+        background-size: 200% auto;
+        /* สั่งให้เล่น animation ชื่อ rgb-move */
+        animation: rgb-move 3s linear infinite;
+    }
+
+/* กำหนดการเคลื่อนที่ของสี */
+    @keyframes smooth-rgb {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+.hero-btn {
+    background-color: white;
+    color: #333;
+    border: none;
+    padding: 12px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 50px; /* ทำให้ปุ่มมน */
+    cursor: pointer;
+    transition: all 0.3s ease; /* ทำให้การเคลื่อนไหวสมูท */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.hero-btn:hover {
+    /* 1. ใช้การไล่สีแบบ 400% เพื่อให้ช่วงรอยต่อของสีดูกว้างและนุ่มขึ้น */
+    background: linear-gradient(
+        45deg, 
+        #ff0000, #ff7f00, #ffff00, #00ff00, #00ffff, #0000ff, #8b00ff, #ff0000
+    );
+    background-size: 400% 400%; /* ขยายพื้นหลังให้ใหญ่ขึ้นเพื่อให้การเลื่อนดูสมูท */
+    
+    /* 2. ปรับการเล่น Animation ให้ช้าลงเล็กน้อย (จาก 3s เป็น 5s) และใช้ ease-in-out */
+    animation: smooth-rgb 5s ease-in-out infinite; 
+    
+    color: white;
+    transform: scale(1.1);
+    border: none;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+    transition: all 0.5s ease; /* ทำให้ตอนเมาส์ชี้แล้วเริ่มเปลี่ยนสี ดูนุ่มนวลขึ้น */
+}
+
+/* เมื่อกดปุ่ม */
+.hero-btn:active {
+    transform: scale(0.95); /* ปุ่มบุบลงไปนิดนึงเวลาคนกดจริง */
+}
+
+html {
+    scroll-behavior: smooth; /* บรรทัดนี้คือเวทมนตร์ที่ทำให้มันเลื่อนนุ่มครับ */
+}
+
+/* ปรับแต่งปุ่มเพิ่มเติม (ถ้ายังไม่ได้ใส่) */
+.hero-btn {
+    background-color: white;
+    color: #333;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 30px; /* ระยะห่างจากขอบล่าง */
+    right: 30px;  /* ระยะห่างจากขอบขวา */
+    width: 60px;  /* ความกว้างวงกลม */
+    height: 60px; /* ความสูงวงกลม */
+    background-color: white;
+    color: #333;
+    border-radius: 50%; /* ทำให้เป็นวงกลมเป๊ะๆ */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 1000; /* ให้อยู่บนสุดเสมอ */
+    transition: all 0.3s ease; /* อนิเมชั่นเหมือนปุ่มหลัก */
+    cursor: pointer;
+}
+
+/* อนิเมชั่นตอนเอาเมาส์ไปชี้ (Hover) เหมือนปุ่มหลัก */
+.back-to-top:hover {
+    transform: scale(1.1); /* ขยายตัวเหมือนกัน */
+    background-color: #f0f0f0;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+/* อนิเมชั่นตอนกด (Active) เหมือนปุ่มหลัก */
+.back-to-top:active {
+    transform: scale(0.9); /* บุบลงตอนกด */
+}
+
+/* กำหนดความกว้างของแถบเลื่อนให้ดูพอดี ไม่หนาเกินไป */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* พื้นหลังแถบเลื่อน (ส่วนราง) ให้เป็นสีเดียวกับเว็บหรือสีเทาอ่อนจางๆ */
+::-webkit-scrollbar-track {
+    background: #ffffff; /* หรือใช้ var(--bg-body) */
+}
+
+/* ตัวเลื่อน (Thumb) แบบมินิมอลสีขาวมน */
+::-webkit-scrollbar-thumb {
+    background: #dfdfdf; /* สีขาวธรรมดาตามที่โบต้องการ */
+    border-radius: 50px; /* ความมนแบบเดียวกับปุ่มที่โบทำ */
+    border: 3px solid rgba(0, 0, 0, 0.05); /* เพิ่มขอบจางๆ ให้มองเห็นได้บนพื้นขาว */
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1); /* เพิ่มมิติให้นิดหน่อย */
+}
+
+/* ตอนเอาเมาส์ไปชี้ ให้เข้มขึ้นนิดนึงเพื่อให้รู้ว่ากำลังเลื่อน */
+::-webkit-scrollbar-thumb:hover {
+    background: #8b5cf6;
+}
+
+
 </style>
 </head>
 <body>
 
     <!-- ปุ่มเปิด/ปิดเมนู -->
-    <button class="toggle-btn" id="btn" onclick="toggleSidebar()">☰ เมนู</button>
+    <button class="toggle-btn" id="btn" onclick="toggleSidebar()" onmouseenter="document.getElementById('shover').play();" >☰ เมนู</button>
 
     <!-- ปุ่มสลับโหมด (พระอาทิตย์/พระจันทร์) -->
-    <button class="theme-switch" id="themeBtn" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
+    <button class="theme-switch" id="themeBtn" onclick="toggleTheme()" aria-label="Toggle dark mode" onmouseenter="document.getElementById('shover').play();" ></button>
+
+    <!-- ปุ่มวงกลมย้อนกลับไปหน้าแรก -->
+    <a href="#home" class="back-to-top" 
+        onmouseenter="document.getElementById('shover').play();" 
+        onclick="document.getElementById('sopen').play();">
+    <i class="fas fa-arrow-up"></i> <!-- ใส่ไอคอนลูกศร (ถ้ามี Font Awesome) หรือใช้คำว่า Top ก็ได้ -->
+    หน้าแรก
+    </a>
 
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
 
@@ -234,14 +452,14 @@
     <div class="sidebar" id="mySidebar">
         <div class="sidebar-header">
             <img src="img/ninefinish2.jpg" alt="Profile Picture" style="width: 140px; height: 140px; border-radius: 50%; margin: 20px auto 20px; display: block; object-fit: cover; object-position: center;">
-            <h2 style="margin:0; color: #ffffff; text-align: center;">ยินดีต้อนรับ!</h2>
+            <h1 style="margin:0; color: #ffffff; text-align: center;">ยินดีต้อนรับ!</h1>
             <b style="color: #ffffff; text-align: center; display: block; font-size: 20px;">นายปฏิภาณ มณีเขียว</b>
         </div>
         <nav style="margin-top: 20px;">
-            <a href="#home" class="menu-item">🏠 หน้าแรก</a>
-            <a href="#about" class="menu-item">👨‍🏫 เกี่ยวกับผม</a>
-            <a href="#projects" class="menu-item">🎮 ผลงาน Roblox</a>
-            <a href="#contact" class="menu-item">✉️ ติดต่อเรา</a>
+            <a href="#home" class="menu-item" onmouseenter="document.getElementById('shover').play();" onclick="document.getElementById('select').play();">🏠 หน้าแรก</a>
+            <a href="#about" class="menu-item" onmouseenter="document.getElementById('shover').play();" onclick="document.getElementById('select').play();">👨‍🏫 เกี่ยวกับผม</a>
+            <a href="#projects" class="menu-item" onmouseenter="document.getElementById('shover').play();" onclick="document.getElementById('select').play();">🎮 ผลงาน Roblox</a>
+            <a href="#contact" class="menu-item" onmouseenter="document.getElementById('shover').play();" onclick="document.getElementById('select').play();">✉️ ติดต่อเรา</a>
         </nav>
     </div>
 
@@ -249,18 +467,36 @@
     <div class="main-content" id="mainContent">
         
         <section id="home">
-            <div class="card" style="text-align: center; border: none; box-shadow: none; background: transparent;">
-                <h1>สวัสดีโบ! ผมปฏิภาณ</h1>
-                <p>ลองเอาเมาส์ชี้ที่ปุ่ม <b>"☰ เมนู"</b> สิ มีสีเขียวเด้งรับด้วยนะ</p>
-                <p>พอเปิดเมนูแล้วปุ่มจะเปลี่ยนเป็นสีชมพูแดงตามที่โบต้องการเป๊ะ!</p>
+            <div class="bg-slider">
+                <div class="bg-slide active" style="background-image: url('img/main1.png');"></div>
+                <div class="bg-slide" style="background-image: url('img/main2.png');"></div>
+                <div class="bg-slide" style="background-image: url('img/main3.png');"></div>
+                <div class="bg-slide" style="background-image: url('img/main4.png');"></div>
+                <div class="bg-slide" style="background-image: url('img/main5.png');"></div>
+                <div class="bg-slide" style="background-image: url('img/main6.png');"></div>
             </div>
+            <div class="hero-content" style="display: flex; flex-direction: column; justify-content: flex-end; align-items: center; height: 100vh; padding-bottom: 200px; text-align: center; border: none; box-shadow: none; background: transparent;">
+                <h1 style="color: white; font-size: 80px; margin: 0;">ยินดีต้อนรับเข้าสู่เว็บไซต์</h1>            
+                <h2 style="color: white; font-size: 50px; margin: 0;">จัดทำโดย</h2>                 
+                <h2 style="color: white; font-size: 30px; margin: 0;">นายปฏิภาณ มณีเขียว</h2>    
+                <br>
+                <a href="#about" class="hero-btn" 
+                    onmouseenter="document.getElementById('shover').play();" 
+                    onclick="document.getElementById('sopen').play();"
+                    style="text-decoration: none; display: inline-block;">
+                เริ่มต้นใช้งาน
+                </a>             
+            </div>
+            
         </section>
 
         <section id="about" style="background: rgba(0,0,0,0.02);">
+    <!-- เพิ่ม onclick เข้าไปตรงนี้ -->
             <div class="card">
                 <h2>👨‍🏫 เกี่ยวกับผม</h2>
                 <p>เน้นความคลีน แต่อัดแน่นด้วยลูกเล่นที่ตอบสนองผู้ใช้ (UX/UI)</p>
-                <p>โบสามารถเพิ่มเนื้อหาประวัติการเรียนหรือทักษะต่างๆ ลงในหน้านี้ได้เลย</p>
+                <p>เทสเทสเทส</p>
+                
             </div>
         </section>
 
@@ -287,6 +523,10 @@
     <script>
         // ฟังก์ชันควบคุม Sidebar (เปิดค้างไว้จนกว่าจะกดปิด)
         function toggleSidebar() {
+            const sound = document.getElementById("sopen");
+            // สั่งให้เล่นเสียงทุกครั้งที่กด
+            sound.currentTime = 0; // รีเซ็ตเสียงให้เริ่มใหม่ (เผื่อกดรัวๆ)
+            sound.play();
             const sidebar = document.getElementById("mySidebar");
             const main = document.getElementById("mainContent");
             const btn = document.getElementById("btn");
@@ -306,6 +546,10 @@
         }
 
         function closeSidebar() {
+            const sound = document.getElementById("sclose");
+            // สั่งให้เล่นเสียงทุกครั้งที่กด
+            sound.currentTime = 0; // รีเซ็ตเสียงให้เริ่มใหม่ (เผื่อกดรัวๆ)
+            sound.play();
             const sidebar = document.getElementById("mySidebar");
             const main = document.getElementById("mainContent");
             const btn = document.getElementById("btn");
@@ -324,9 +568,15 @@
             const themeBtn = document.getElementById("themeBtn");
 
             if (body.getAttribute("data-theme") === "dark") {
+                const offSound = document.getElementById("switchon");
+                offSound.currentTime = 0;
+                offSound.play();
                 body.removeAttribute("data-theme");
                 themeBtn.classList.remove("active");
             } else {
+                const offSound = document.getElementById("switchoff");
+                offSound.currentTime = 0;
+                offSound.play();
                 body.setAttribute("data-theme", "dark");
                 themeBtn.classList.add("active");
             }
@@ -353,9 +603,70 @@
                 }
             });
         }
-
+        
         window.addEventListener('scroll', updateActiveMenu);
+
+            let currentSlide = 0;
+        const slides = document.querySelectorAll('.bg-slide');
+
+        function nextSlide() {
+            if (slides.length === 0) return;
+
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            // เริ่มเล่นทันทีเมื่อหน้าโหลดเสร็จ
+            setInterval(nextSlide, 5000); // แสดงภาพแต่ละภาพ 4 วินาที + เปลี่ยน 1 วินาที
+        });
+
+        window.addEventListener('scroll', 
+        
+        function() {
+                    // ระยะการเลื่อนจากบนสุด
+            const scrollPos = window.scrollY;
+            
+            // กำหนดว่าอยากให้เบลอสูงสุดเท่าไหร่ (เช่น 10px หรือ 15px)
+            const maxBlur = 12; 
+            
+            // กำหนดระยะการไถที่ต้องการให้ถึงจุดเบลอสูงสุด (เช่น ไถลงไป 500px แล้วเบลอสุด)
+            const scrollRange = 500; 
+
+            // คำนวณค่าเบลอ: ยิ่ง scrollPos เยอะ ค่า blurValue ก็จะเยอะขึ้น
+            let blurValue = (scrollPos / scrollRange) * maxBlur;
+
+            // ล็อกไม่ให้มันเบลอเกินค่าสูงสุดที่เราตั้งไว้
+            if (blurValue > maxBlur) blurValue = maxBlur;
+
+        document.documentElement.style.setProperty('--blur-amount', blurValue + 'px');
+            });
+        // ดึงปุ่มเมนูทั้งหมดมาใส่เสียง
+            const menuItems = document.querySelectorAll('.menu-item');
+                menuItems.forEach(item => {
+                // 1. เสียงตอนเอาเมาส์ไปชี้ (Hover)
+                item.addEventListener('mouseenter', () => {
+            const hoverSnd = document.getElementById('shover');
+                hoverSnd.currentTime = 0;
+                hoverSnd.play();
+            });
+
+                // 2. เสียงตอนกดเลือก (Click)
+                item.addEventListener('click', () => {
+            const selectSnd = document.getElementById('select');
+                selectSnd.currentTime = 0;
+                selectSnd.play();
+                    });
+                });
     </script>
+    <audio id="sopen" src="sound/soundopen.mp3"></audio>
+    <audio id="sclose" src="sound/soundclose.mp3"></audio>
+    <audio id="shover" src="sound/soundhover.mp3"></audio>
+    <audio id="select" src="sound/selectsound.mp3"></audio>
+    <audio id="switch" src="sound/soundswitch.mp3"></audio>
+    <audio id="switchon" src="sound/switchon.mp3"></audio>
+    <audio id="switchoff" src="sound/switchoff.mp3"></audio>
 
 </body>
 </html>
