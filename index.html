@@ -3,37 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arriv4Lz | Glassmorphism Portfolio</title>
+    <title>Arriv4Lz | Minimal Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --glass: rgba(255, 255, 255, 0.15); /* สีขาวจางๆ */
-            --glass-border: rgba(255, 255, 255, 0.2); /* ขอบขาวจางๆ */
+            --primary: #2563eb;
+            --dark: #1e293b;
+            --bg-light: #f8fafc;
             --sidebar-width: 280px;
         }
 
         body {
             font-family: 'Kanit', sans-serif;
             margin: 0;
-            min-height: 100vh;
             display: flex;
-            /* พื้นหลังแบบ iPhone Style (ต้องมีสีสดๆ ถึงจะเห็นกระจกชัด) */
-            background: linear-gradient(45deg, #0f172a, #1e293b);
-            background-image: 
-                radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.3) 0, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(192, 38, 211, 0.3) 0, transparent 50%);
-            color: white;
-            overflow-x: hidden;
+            background-color: var(--bg-light);
+            color: var(--dark);
+            transition: 0.3s;
         }
 
-        /* --- Sidebar กระจกฝ้า --- */
+        /* --- Sidebar (สีเข้มตัดกับพื้นหลังขาวจะดูโปรมาก) --- */
         .sidebar {
             width: var(--sidebar-width);
             height: 100vh;
-            background: rgba(255, 255, 255, 0.05); /* พื้นหลังโปร่งแสงน้อยมาก */
-            backdrop-filter: blur(15px); /* **หัวใจหลัก: ความฝ้าแบบ iPhone** */
-            -webkit-backdrop-filter: blur(15px);
-            border-right: 1px solid var(--glass-border);
+            background: var(--dark);
+            color: white;
             position: fixed;
             left: 0;
             transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -44,25 +38,23 @@
             left: calc(var(--sidebar-width) * -1);
         }
 
-        /* --- กล่องเนื้อหากระจก (Card) --- */
-        .card {
-            background: var(--glass);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 30px;
-            margin-top: 80px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-            transition: 0.3s;
-            animation: fadeIn 0.8s ease;
+        .sidebar-header {
+            padding: 30px 20px;
+            border-bottom: 1px solid #334155;
         }
 
-        /* เอฟเฟกต์ตอนเอาเมาส์ชี้ (Hover) ให้กระจกดูชัดขึ้น */
-        .card:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-5px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
+        .menu-item {
+            padding: 15px 25px;
+            display: block;
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .menu-item:hover {
+            background: #334155;
+            color: #38bdf8;
+            padding-left: 35px;
         }
 
         /* --- ปุ่มเปิด/ปิด --- */
@@ -70,38 +62,26 @@
             position: fixed;
             left: 20px;
             top: 20px;
-            background: var(--glass);
-            backdrop-filter: blur(10px);
-            color: white;
-            border: 1px solid var(--glass-border);
-            padding: 10px 20px;
-            border-radius: 12px;
+            background: white;
+            color: var(--dark);
+            border: 1px solid #e2e8f0;
+            padding: 8px 16px;
+            border-radius: 8px;
             cursor: pointer;
             z-index: 1100;
             transition: 0.4s;
+            font-family: 'Kanit';
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
 
         .toggle-btn.active {
-            left: calc(var(--sidebar-width) - 70px);
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .menu-item {
-            padding: 15px 25px;
-            display: block;
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: 0.3s;
-            border-radius: 12px;
-            margin: 5px 15px;
-        }
-
-        .menu-item:hover {
-            background: rgba(255, 255, 255, 0.1);
+            left: calc(var(--sidebar-width) - 75px);
+            background: #334155;
             color: white;
-            padding-left: 30px;
+            border: none;
         }
 
+        /* --- Main Content --- */
         .main-content {
             margin-left: var(--sidebar-width);
             width: 100%;
@@ -109,12 +89,28 @@
             transition: 0.4s;
         }
 
-        .main-content.expand { margin-left: 0; }
+        .main-content.expand {
+            margin-left: 0;
+        }
 
-        @keyframes fadeIn {
+        /* กล่องเนื้อหาแบบคลีนๆ */
+        .card {
+            background: white;
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+            margin-top: 50px;
+            border: 1px solid #f1f5f9;
+            animation: slideUp 0.6s ease;
+        }
+
+        @keyframes slideUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        h1 { color: var(--primary); }
     </style>
 </head>
 <body>
@@ -122,27 +118,30 @@
     <button class="toggle-btn active" id="btn" onclick="toggleSidebar()">✕ ปิด</button>
 
     <div class="sidebar" id="mySidebar">
-        <div style="padding: 30px 20px;">
-            <h2 style="margin:0; color: #38bdf8; font-weight: 600;">Arriv4Lz</h2>
+        <div class="sidebar-header">
+            <h2 style="margin:0; color: #38bdf8;">Arriv4Lz</h2>
         </div>
-        <nav>
-            <a href="#" class="menu-item">🏠 Dashboard</a>
-            <a href="#" class="menu-item">🎮 My Roblox Game</a>
-            <a href="#" class="menu-item">📊 Teaching Skills</a>
-            <a href="#" class="menu-item">✉️ Contact</a>
+        <nav style="margin-top: 20px;">
+            <a href="#" class="menu-item">🏠 หน้าแรก</a>
+            <a href="#" class="menu-item">📁 ผลงานของฉัน</a>
+            <a href="#" class="menu-item">🎮 Roblox Project</a>
+            <a href="#" class="menu-item">✉️ ติดต่อเรา</a>
         </nav>
     </div>
 
     <div class="main-content" id="mainContent">
         <div class="card">
-            <h1 style="margin-top: 0;">Glassmorphism Style ✨</h1>
-            <p>นี่คือดีไซน์แบบ <b>กระจกฝ้า</b> ที่โบอยากได้ครับ ลองสังเกตพื้นหลังที่ทะลุผ่านกล่องขาวจางๆ ดูนะ มันจะดูนวลเหมือนหน้าจอ iPhone เลย</p>
-            <p>เคล็ดลับคือการใช้ <code>backdrop-filter: blur()</code> เพื่อทำให้ของที่อยู่ข้างหลังกล่องมันเบลอครับ</p>
+            <h1>กลับสู่ความเรียบง่าย (Minimal Style)</h1>
+            <p>แบบนี้อ่านง่ายขึ้นเยอะเลยใช่ไหมโบ? พื้นหลังสีขาวสะอาดตาช่วยให้เนื้อหาดูเด่นและดูเป็นทางการมากขึ้นครับ</p>
         </div>
 
         <div class="card">
-            <h2>ทำไมมันถึงดูพรีเมียม?</h2>
-            <p>เพราะมันมีการเล่นกับเลเยอร์ (Layer) ครับ เมื่อโบเอาเมาส์มาชี้ที่กล่อง กระจกจะสว่างขึ้นเล็กน้อย ทำให้คนใช้งานรู้สึกว่ากล่องมันลอยขึ้นมาจริงๆ</p>
+            <h2>ทำไมสไตล์นี้ถึงดี?</h2>
+            <ul>
+                <li><b>อ่านง่าย:</b> สบายตา ไม่ดึงความสนใจจากเนื้อหาหลัก</li>
+                <li><b>ดูเป็นมืออาชีพ:</b> เว็บพอร์ตโฟลิโอส่วนใหญ่นิยมใช้สีขาวเป็นหลักครับ</li>
+                <li><b>โหลดเร็ว:</b> ไม่ต้องรันเอฟเฟกต์เบลอเยอะๆ ทำให้เครื่องไม่หน่วง</li>
+            </ul>
         </div>
     </div>
 
@@ -163,5 +162,6 @@
             }
         }
     </script>
+
 </body>
 </html>
