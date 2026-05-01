@@ -427,6 +427,51 @@ html {
     background: #8b5cf6;
 }
 
+.reveal {
+    opacity: 0;
+    transform: translateY(40px); /* ลดระยะจมลงหน่อย จะได้ลอยถึงที่หมายเร็วขึ้น */
+    /* ปรับจาก 0.8s หรือ 1.0s ให้เหลือ 0.3s - 0.5s */
+    transition: all 0.4s ease-out; 
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0); /* ลอยกลับมาที่เดิม */
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    color: #333;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 1000;
+    cursor: pointer;
+    
+    /* --- ส่วนที่เพิ่ม/แก้ไข --- */
+    opacity: 0;            /* เริ่มต้นให้จางหายไป */
+    visibility: hidden;    /* ทำให้กดไม่ได้ตอนที่ยังไม่โผล่ */
+    transform: translateY(20px); /* จมลงไปนิดนึง */
+    transition: all 0.4s ease;   /* เวลาขยับจะได้สมูท */
+}
+
+/* คลาสที่จะให้ JavaScript สั่งเติมตอนเลื่อนลงมา */
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0); /* ลอยกลับมาที่เดิม */
+}
+
 
 </style>
 </head>
@@ -440,9 +485,8 @@ html {
 
     <!-- ปุ่มวงกลมย้อนกลับไปหน้าแรก -->
     <a href="#home" class="back-to-top" 
-        onmouseenter="document.getElementById('shover').play();" 
-        onclick="document.getElementById('sopen').play();">
-    <i class="fas fa-arrow-up"></i> <!-- ใส่ไอคอนลูกศร (ถ้ามี Font Awesome) หรือใช้คำว่า Top ก็ได้ -->
+    onmouseenter="document.getElementById('shover').play();" 
+    onclick="document.getElementById('sopen').play();">
     หน้าแรก
     </a>
 
@@ -492,7 +536,7 @@ html {
 
         <section id="about" style="background: rgba(0,0,0,0.02);">
     <!-- เพิ่ม onclick เข้าไปตรงนี้ -->
-            <div class="card">
+            <div class="card reveal">
                 <h2>👨‍🏫 เกี่ยวกับผม</h2>
                 <p>เน้นความคลีน แต่อัดแน่นด้วยลูกเล่นที่ตอบสนองผู้ใช้ (UX/UI)</p>
                 <p>เทสเทสเทส</p>
@@ -501,7 +545,7 @@ html {
         </section>
 
         <section id="projects">
-            <div class="card">
+            <div class="card reveal">
                 <h2>🎮 ผลงาน Roblox</h2>
                 <p>โปรเจกต์เกม <b>ซอยตาพล้อย</b></p>
                 <div style="background: var(--bg-body); height: 250px; border-radius: 15px; border: 2px dashed var(--border-color); display: flex; align-items: center; justify-content: center; color: var(--text-sub);">
@@ -511,7 +555,7 @@ html {
         </section>
 
         <section id="contact" style="background: rgba(0,0,0,0.02);">
-            <div class="card">
+            <div class="card reveal">
                 <h2>✉️ ช่องทางการติดต่อ</h2>
                 <p>📍 ลานสกา, นครศรีธรรมราช</p>
                 <p>📧 Email: yourname@email.com</p>
@@ -659,6 +703,36 @@ html {
                 selectSnd.play();
                     });
                 });
+    
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    } else {
+                        entry.target.classList.remove('active');
+                    }
+                });
+            }, {
+                /* 1. ปรับ threshold ให้เป็น 0: แค่เห็น 1 พิกเซลก็ให้โผล่มาเลย */
+                threshold: 0, 
+                /* 2. rootMargin: สั่งให้ทำงานล่วงหน้าก่อนจะเห็นจริง (เช่น 50px ก่อนถึงขอบจอ) */
+                rootMargin: "0px 0px -50px 0px" 
+            });
+            document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+            
+        window.addEventListener('scroll', function() {
+            const backToTopBtn = document.querySelector('.back-to-top');
+            
+            // ถ้าเลื่อนลงมาเกิน 400 พิกเซล (ประมาณพ้นหน้าแรก)
+            if (window.scrollY > 400) {
+                backToTopBtn.classList.add('show');
+            } else {
+                // ถ้าเลื่อนกลับขึ้นไปด้านบน ให้ซ่อนปุ่ม
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+
     </script>
     <audio id="sopen" src="sound/soundopen.mp3"></audio>
     <audio id="sclose" src="sound/soundclose.mp3"></audio>
