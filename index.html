@@ -3,142 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arriv4Lz | Dashboard Portfolio</title>
+    <title>Arriv4Lz | Responsive Sidebar</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #2563eb;
-            --bg: #f0f2f5;
+            --dark: #1e293b;
             --sidebar-width: 260px;
+            --sidebar-closed-width: 0px; /* ถ้าจะให้หายไปเลยใช้ 0px หรือจะเหลือแค่ไอคอนก็ได้ */
         }
 
         body {
             font-family: 'Kanit', sans-serif;
             margin: 0;
-            display: flex; /* ใช้ Flex เพื่อแยก Sidebar กับ Content */
-            background-color: var(--bg);
-            overflow-x: hidden;
+            display: flex;
+            background-color: #f0f2f5;
+            transition: 0.3s;
         }
 
-        /* --- 1. Sidebar (เมนูซ้าย) --- */
+        /* --- Sidebar Style --- */
         .sidebar {
             width: var(--sidebar-width);
             height: 100vh;
-            background: #1e293b;
+            background: var(--dark);
             color: white;
             position: fixed;
-            padding: 20px;
-            box-sizing: border-box;
+            left: 0;
+            transition: 0.3s; /* ทำให้ตอนหุบดูนุ่มนวล */
+            overflow: hidden;
+            z-index: 1000;
         }
 
-        .sidebar h2 {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            color: #38bdf8;
-            text-align: center;
+        /* คลาสที่จะถูกเติมด้วย JavaScript เพื่อสั่งหุบเมนู */
+        .sidebar.closed {
+            left: calc(var(--sidebar-width) * -1);
+        }
+
+        .sidebar-content {
+            padding: 20px;
+            width: var(--sidebar-width);
+        }
+
+        /* --- Main Content Style --- */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            width: 100%;
+            padding: 40px;
+            transition: 0.3s;
+        }
+
+        /* เมื่อ Sidebar ปิด ให้ขยายพื้นที่เนื้อหาให้เต็มจอ */
+        .main-content.expand {
+            margin-left: 0;
+        }
+
+        /* --- ปุ่มเปิด/ปิด --- */
+        .toggle-btn {
+            position: fixed;
+            left: 20px;
+            top: 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 1100;
+            font-family: 'Kanit';
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
         .menu-item {
             padding: 12px 15px;
             margin-bottom: 10px;
             border-radius: 10px;
-            cursor: pointer;
-            transition: 0.3s;
             display: block;
             color: #cbd5e1;
             text-decoration: none;
+            transition: 0.2s;
         }
 
         .menu-item:hover {
             background: #334155;
             color: white;
-            transform: translateX(10px); /* อนิเมชั่นตอนชี้เมนู */
-        }
-
-        /* --- 2. Main Content (เนื้อหาขวา) --- */
-        .main-content {
-            margin-left: var(--sidebar-width);
-            width: 100%;
-            padding: 40px;
-            min-height: 100vh;
-        }
-
-        /* --- 3. Animation (ตัวทำให้เว็บดูมีชีวิต) --- */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .card {
             background: white;
             padding: 25px;
             border-radius: 15px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-            margin-bottom: 25px;
-            /* เรียกใช้แอนิเมชั่น */
-            animation: fadeInUp 0.8s ease-out forwards;
-            opacity: 0; /* เริ่มต้นให้จางไว้ก่อน */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            margin-top: 60px; /* หลบปุ่ม Toggle */
         }
-
-        /* ตั้งเวลาให้แต่ละกล่องลอยขึ้นมาไม่พร้อมกัน (Stagger) */
-        .card:nth-child(1) { animation-delay: 0.2s; }
-        .card:nth-child(2) { animation-delay: 0.4s; }
-        .card:nth-child(3) { animation-delay: 0.6s; }
-
-        .card:hover {
-            transform: scale(1.02);
-            transition: 0.3s;
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
-        }
-
-        .status-badge {
-            display: inline-block;
-            padding: 5px 12px;
-            background: #dcfce7;
-            color: #166534;
-            border-radius: 20px;
-            font-size: 0.8rem;
-        }
-
     </style>
 </head>
 <body>
 
+    <!-- ปุ่มกดสำหรับสลับ เปิด/ปิด -->
+    <button class="toggle-btn" onclick="toggleSidebar()">☰ เมนู</button>
+
     <!-- Sidebar -->
-    <div class="sidebar">
-        <h2>Arriv4Lz OS</h2>
-        <a href="#" class="menu-item">🏠 หน้าแรก</a>
-        <a href="#" class="menu-item">📁 ผลงานของฉัน</a>
-        <a href="#" class="menu-item">🎮 Roblox Project</a>
-        <a href="#" class="menu-item">⚙️ ตั้งค่า</a>
+    <div class="sidebar" id="mySidebar">
+        <div class="sidebar-content">
+            <h2 style="color: #38bdf8;">Arriv4Lz OS</h2>
+            <hr style="border: 0.5px solid #334155;">
+            <a href="#" class="menu-item">🏠 หน้าแรก</a>
+            <a href="#" class="menu-item">📁 ผลงานของฉัน</a>
+            <a href="#" class="menu-item">🎮 Roblox Project</a>
+            <a href="#" class="menu-item">⚙️ ตั้งค่า</a>
+        </div>
     </div>
 
     <!-- Main Content -->
-    <div class="main-content">
-        
+    <div class="main-content" id="mainContent">
         <div class="card">
-            <span class="status-badge">ยินดีต้อนรับ</span>
-            <h1>สวัสดีครับโบ! นี่คือหน้าเว็บแบบมี Sidebar</h1>
-            <p>ลองสังเกตดูว่าตอนเปิดหน้าเว็บมา กล่องเหล่านี้จะค่อยๆ ลอยขึ้นมาทีละอัน นี่คือพลังของ <b>CSS Animation</b> ครับ</p>
+            <h1>ระบบ Sidebar แบบพับเก็บได้!</h1>
+            <p>ลองกดปุ่ม <b>"☰ เมนู"</b> ที่มุมซ้ายบนดูครับโบ ตัวเมนูจะหุบหายไป และเนื้อหาฝั่งขวาจะขยายเต็มจอโดยอัตโนมัติ</p>
+            <p>ฟีเจอร์นี้ช่วยให้ผู้ใช้งานมีสมาธิกับเนื้อหามากขึ้น (Focus Mode) และดูเป็นมืออาชีพสุดๆ</p>
         </div>
-
-        <div class="card">
-            <h2>ทำไมต้องมี Sidebar?</h2>
-            <p>การมีเมนูทางด้านซ้ายช่วยให้ผู้ใช้งานเข้าถึงส่วนต่างๆ ของเว็บได้ง่ายขึ้นมาก โดยเฉพาะเว็บที่มีเนื้อหาเยอะๆ เหมือนพวก Dashboard ของครูคอมฯ</p>
-        </div>
-
-        <div class="card">
-            <h2>ลองเอาเมาส์มาชี้ที่กล่องสิ</h2>
-            <p>ผมใส่เอฟเฟกต์ <b>Hover</b> ไว้ด้วย เมื่อโบเอาเมาส์มาวาง กล่องมันจะขยายตัวขึ้นนิดหน่อย (Scale) และเงาจะเข้มขึ้น ทำให้เว็บดูโต้ตอบกับคนใช้ได้ดีขึ้นครับ</p>
-        </div>
-
     </div>
+
+    <!-- ส่วนของ JavaScript (สมองของปุ่ม) -->
+    <script>
+        function toggleSidebar() {
+            // สั่งให้หา Sidebar และ Main Content
+            const sidebar = document.getElementById("mySidebar");
+            const main = document.getElementById("mainContent");
+
+            // สั่งให้ "เพิ่ม" หรือ "เอาออก" คลาส closed และ expand
+            sidebar.classList.toggle("closed");
+            main.classList.toggle("expand");
+        }
+    </script>
 
 </body>
 </html>
