@@ -6,7 +6,7 @@
     <title>Arriv4Lz | One Page Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* --- ตั้งค่าให้การเลื่อนหน้าจอนุ่มนวล --- */
+        /* --- Smooth Scroll --- */
         html {
             scroll-behavior: smooth;
         }
@@ -26,28 +26,29 @@
             color: var(--dark);
         }
 
-        /* --- Sidebar (คงเดิม) --- */
+        /* --- Sidebar (เริ่มต้นแบบปิด) --- */
         .sidebar {
             width: var(--sidebar-width);
             height: 100vh;
             background: var(--dark);
             color: white;
             position: fixed;
-            left: 0;
+            left: calc(var(--sidebar-width) * -1); /* ซ่อนไว้ฝั่งซ้าย */
             transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 1000;
+            box-shadow: 4px 0 15px rgba(0,0,0,0.1);
         }
 
-        .sidebar.closed {
-            left: calc(var(--sidebar-width) * -1);
+        .sidebar.open {
+            left: 0; /* เลื่อนออกมาเมื่อมีคลาส open */
         }
 
         .sidebar-header {
             padding: 30px 20px;
             border-bottom: 1px solid #334155;
+            text-align: center;
         }
 
-        /* --- เมนู (เปลี่ยนเป็นลิงก์ไปยัง ID) --- */
         .menu-item {
             padding: 15px 25px;
             display: block;
@@ -63,6 +64,7 @@
             padding-left: 35px;
         }
 
+        /* --- ปุ่มเปิด/ปิด (เริ่มต้นแบบสีขาวจาง) --- */
         .toggle-btn {
             position: fixed;
             left: 20px;
@@ -70,15 +72,17 @@
             background: white;
             color: var(--dark);
             border: 1px solid #e2e8f0;
-            padding: 8px 16px;
-            border-radius: 8px;
+            padding: 10px 18px;
+            border-radius: 12px;
             cursor: pointer;
             z-index: 1100;
-            transition: 0.4s;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             font-family: 'Kanit';
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
 
+        /* เมื่อเมนูเปิด ปุ่มจะขยับตามและเปลี่ยนสี */
         .toggle-btn.active {
             left: calc(var(--sidebar-width) - 75px);
             background: #334155;
@@ -86,116 +90,131 @@
             border: none;
         }
 
-        /* --- Main Content Layout --- */
+        /* --- Main Content (เริ่มต้นแบบเต็มจอ) --- */
         .main-content {
-            margin-left: var(--sidebar-width);
-            width: 100%;
-            transition: 0.4s;
-        }
-
-        .main-content.expand {
             margin-left: 0;
+            width: 100%;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* --- Section (แต่ละส่วนของหน้าเว็บ) --- */
+        /* เมื่อเมนูเปิด ดันเนื้อหาไปทางขวา (ถ้าหน้าจอใหญ่พอ) */
+        .main-content.pushed {
+            margin-left: var(--sidebar-width);
+        }
+
+        /* --- Section Styling --- */
         section {
-            min-height: 100vh; /* ให้แต่ละส่วนมีความสูงเต็มหน้าจอ */
-            padding: 80px 40px;
+            min-height: 100vh;
+            padding: 100px 20px;
             box-sizing: border-box;
-            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .card {
             background: white;
             padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            max-width: 900px;
-            margin: 0 auto;
+            border-radius: 24px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            max-width: 800px;
+            width: 100%;
+            border: 1px solid #f1f5f9;
         }
 
-        h1 { color: var(--primary); font-size: 2.5rem; }
-        h2 { color: var(--primary); margin-bottom: 20px; }
-        p { line-height: 1.8; font-size: 1.1rem; }
+        h1 { color: var(--primary); font-size: 2.8rem; margin-bottom: 10px; }
+        h2 { color: var(--primary); font-size: 2rem; margin-bottom: 20px; }
+        p { line-height: 1.8; font-size: 1.1rem; color: #475569; }
 
+        /* Responsive: ถ้าจอมือถือ ไม่ต้องดันเนื้อหา */
+        @media (max-width: 768px) {
+            .main-content.pushed { margin-left: 0; }
+        }
     </style>
 </head>
 <body>
 
-    <button class="toggle-btn active" id="btn" onclick="toggleSidebar()">✕ ปิด</button>
+    <!-- ปุ่ม Toggle -->
+    <button class="toggle-btn" id="btn" onclick="toggleSidebar()">☰ เมนู</button>
 
-    <!-- Sidebar -->
+    <!-- Sidebar (เริ่มต้นถูกซ่อน) -->
     <div class="sidebar" id="mySidebar">
         <div class="sidebar-header">
             <h2 style="margin:0; color: #38bdf8;">Arriv4Lz</h2>
         </div>
         <nav style="margin-top: 20px;">
-            <!-- ใช้ # ตามด้วย ID ของ section นั้นๆ -->
-            <a href="#home" class="menu-item">🏠 หน้าแรก</a>
-            <a href="#about" class="menu-item">👨‍🏫 เกี่ยวกับผม</a>
-            <a href="#projects" class="menu-item">🎮 ผลงาน Roblox</a>
-            <a href="#contact" class="menu-item">✉️ ติดต่อเรา</a>
+            <a href="#home" class="menu-item" onclick="toggleSidebar()">🏠 หน้าแรก</a>
+            <a href="#about" class="menu-item" onclick="toggleSidebar()">👨‍🏫 เกี่ยวกับผม</a>
+            <a href="#projects" class="menu-item" onclick="toggleSidebar()">🎮 ผลงาน Roblox</a>
+            <a href="#contact" class="menu-item" onclick="toggleSidebar()">✉️ ติดต่อเรา</a>
         </nav>
     </div>
 
     <!-- Main Content -->
     <div class="main-content" id="mainContent">
         
-        <!-- Section: หน้าแรก -->
-        <section id="home" style="display: flex; align-items: center; background: white;">
-            <div class="card" style="box-shadow: none; text-align: center;">
-                <h1>สวัสดีครับ ผมนายปฏิภาณ</h1>
-                <p>ยินดีต้อนรับเข้าสู่ One-Page Portfolio ของว่าที่ครูคอมพิวเตอร์ครับ</p>
-                <p>ไถหน้าจอลงเพื่อดูรายละเอียด หรือกดเมนูข้างๆ ได้เลยโบ!</p>
+        <!-- ส่วนที่ 1: หน้าแรก -->
+        <section id="home">
+            <div class="card" style="text-align: center; border: none; box-shadow: none; background: transparent;">
+                <h1>สวัสดีโบ! ผมปฏิภาณ</h1>
+                <p>ยินดีต้อนรับสู่ One-Page Portfolio แบบคลีนๆ</p>
+                <p>ลองกดที่ปุ่ม <b>"☰ เมนู"</b> มุมซ้ายบนเพื่อดูหัวข้อต่างๆ ได้เลยครับ</p>
             </div>
         </section>
 
-        <!-- Section: เกี่ยวกับผม -->
-        <section id="about">
+        <!-- ส่วนที่ 2: เกี่ยวกับผม -->
+        <section id="about" style="background: white;">
             <div class="card">
-                <h2>เกี่ยวกับผม</h2>
-                <p>ผมกำลังศึกษาด้านคุรุศาสตร์คอมพิวเตอร์ มีความสนใจในการนำเทคโนโลยีใหม่ๆ มาใช้ในการสอน...</p>
-                <p>เป้าหมายของผมคือการทำให้การเรียนคอมพิวเตอร์ไม่ใช่เรื่องน่าเบื่อสำหรับเด็กไทย</p>
+                <h2>👨‍🏫 เกี่ยวกับผม</h2>
+                <p>ผมเป็นนักศึกษาคุรุศาสตร์คอมพิวเตอร์ ที่หลงใหลในเทคโนโลยีและการสร้างสรรค์เกม</p>
+                <p>การเขียนเว็บและพัฒนาเกมคือสิ่งที่ผมทำเพื่อฝึกฝนทักษะในการแก้ปัญหา และนำไปถ่ายทอดต่อให้กับนักเรียนในอนาคต</p>
             </div>
         </section>
 
-        <!-- Section: ผลงาน -->
+        <!-- ส่วนที่ 3: ผลงาน -->
         <section id="projects" style="background: #f1f5f9;">
             <div class="card">
-                <h2>ผลงาน Roblox: ซอยตาพล้อย</h2>
-                <p>นี่คือโปรเจกต์เกมสยองขวัญที่ผมกำลังพัฒนาอยู่ โดยใช้บรรยากาศซอยในไทยมาเป็นจุดเด่น...</p>
-                <div style="background: #ddd; height: 300px; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
-                    [ พื้นที่สำหรับใส่รูป/คลิปเกมของโบ ]
+                <h2>🎮 ผลงาน Roblox</h2>
+                <p><b>โปรเจกต์: ซอยตาพล้อย (Soi Ta Phloy)</b></p>
+                <p>เกมแนว Horror ผสมผสานบรรยากาศซอยไทยที่คุ้นเคย พัฒนาด้วย Roblox Studio</p>
+                <div style="background: #e2e8f0; height: 300px; border-radius: 15px; display: flex; align-items: center; justify-content: center; border: 2px dashed #cbd5e1; color: #94a3b8;">
+                    [ ใส่รูปภาพหรือคลิปวิดีโอเกมของโบตรงนี้ ]
                 </div>
             </div>
         </section>
 
-        <!-- Section: ติดต่อ -->
-        <section id="contact">
+        <!-- ส่วนที่ 4: ติดต่อ -->
+        <section id="contact" style="background: white;">
             <div class="card">
-                <h2>ติดต่อผม</h2>
-                <p>อีเมล: example@email.com</p>
-                <p>Facebook: Patipan ...</p>
-                <p>สถานที่: นครศรีธรรมราช, ประเทศไทย</p>
+                <h2>✉️ ช่องทางการติดต่อ</h2>
+                <p>หากสนใจร่วมงานหรือสอบถามข้อมูลเพิ่มเติม สามารถติดต่อได้ที่:</p>
+                <ul style="list-style: none; padding: 0;">
+                    <li>📍 <b>สถานที่:</b> อำเภอลานสกา, นครศรีธรรมราช</li>
+                    <li>📧 <b>Email:</b> yourname@email.com</li>
+                    <li>📱 <b>Facebook:</b> Patipan (Nai)</li>
+                </ul>
             </div>
         </section>
 
     </div>
 
+    <!-- JavaScript ควบคุมการเปิด-ปิด -->
     <script>
         function toggleSidebar() {
             const sidebar = document.getElementById("mySidebar");
             const main = document.getElementById("mainContent");
             const btn = document.getElementById("btn");
 
-            sidebar.classList.toggle("closed");
-            main.classList.toggle("expand");
+            // สลับคลาสเพื่อเปิด/ปิด
+            sidebar.classList.toggle("open");
+            main.classList.toggle("pushed");
             btn.classList.toggle("active");
 
-            if (sidebar.classList.contains("closed")) {
-                btn.innerHTML = "☰ เมนู";
-            } else {
+            // เปลี่ยนข้อความบนปุ่ม
+            if (sidebar.classList.contains("open")) {
                 btn.innerHTML = "✕ ปิด";
+            } else {
+                btn.innerHTML = "☰ เมนู";
             }
         }
     </script>
