@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arriv4Lz | One Page Portfolio</title>
+    <title>Arriv4Lz | Continuous One-Page</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         /* --- Smooth Scroll --- */
@@ -26,21 +26,21 @@
             color: var(--dark);
         }
 
-        /* --- Sidebar (เริ่มต้นแบบปิด) --- */
+        /* --- Sidebar (เริ่มต้นซ่อนไว้ฝั่งซ้าย) --- */
         .sidebar {
             width: var(--sidebar-width);
             height: 100vh;
             background: var(--dark);
             color: white;
             position: fixed;
-            left: calc(var(--sidebar-width) * -1); /* ซ่อนไว้ฝั่งซ้าย */
+            left: calc(var(--sidebar-width) * -1); 
             transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 1000;
             box-shadow: 4px 0 15px rgba(0,0,0,0.1);
         }
 
         .sidebar.open {
-            left: 0; /* เลื่อนออกมาเมื่อมีคลาส open */
+            left: 0; /* เลื่อนออกมาเมื่อเปิด */
         }
 
         .sidebar-header {
@@ -64,7 +64,7 @@
             padding-left: 35px;
         }
 
-        /* --- ปุ่มเปิด/ปิด (เริ่มต้นแบบสีขาวจาง) --- */
+        /* --- ปุ่มเปิด/ปิด --- */
         .toggle-btn {
             position: fixed;
             left: 20px;
@@ -82,7 +82,6 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
 
-        /* เมื่อเมนูเปิด ปุ่มจะขยับตามและเปลี่ยนสี */
         .toggle-btn.active {
             left: calc(var(--sidebar-width) - 75px);
             background: #334155;
@@ -90,14 +89,13 @@
             border: none;
         }
 
-        /* --- Main Content (เริ่มต้นแบบเต็มจอ) --- */
+        /* --- Main Content --- */
         .main-content {
             margin-left: 0;
             width: 100%;
             transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* เมื่อเมนูเปิด ดันเนื้อหาไปทางขวา (ถ้าหน้าจอใหญ่พอ) */
         .main-content.pushed {
             margin-left: var(--sidebar-width);
         }
@@ -126,9 +124,10 @@
         h2 { color: var(--primary); font-size: 2rem; margin-bottom: 20px; }
         p { line-height: 1.8; font-size: 1.1rem; color: #475569; }
 
-        /* Responsive: ถ้าจอมือถือ ไม่ต้องดันเนื้อหา */
+        /* Responsive สำหรับมือถือ */
         @media (max-width: 768px) {
             .main-content.pushed { margin-left: 0; }
+            .toggle-btn.active { left: calc(var(--sidebar-width) - 70px); }
         }
     </style>
 </head>
@@ -137,80 +136,73 @@
     <!-- ปุ่ม Toggle -->
     <button class="toggle-btn" id="btn" onclick="toggleSidebar()">☰ เมนู</button>
 
-    <!-- Sidebar (เริ่มต้นถูกซ่อน) -->
+    <!-- Sidebar (เริ่มต้นปิดค้างไว้) -->
     <div class="sidebar" id="mySidebar">
         <div class="sidebar-header">
             <h2 style="margin:0; color: #38bdf8;">Arriv4Lz</h2>
         </div>
         <nav style="margin-top: 20px;">
-            <a href="#home" class="menu-item" onclick="toggleSidebar()">🏠 หน้าแรก</a>
-            <a href="#about" class="menu-item" onclick="toggleSidebar()">👨‍🏫 เกี่ยวกับผม</a>
-            <a href="#projects" class="menu-item" onclick="toggleSidebar()">🎮 ผลงาน Roblox</a>
-            <a href="#contact" class="menu-item" onclick="toggleSidebar()">✉️ ติดต่อเรา</a>
+            <!-- เอา onclick="toggleSidebar()" ออกเพื่อให้มันไม่หุบเองเมื่อกดเลือกหัวข้อ -->
+            <a href="#home" class="menu-item">🏠 หน้าแรก</a>
+            <a href="#about" class="menu-item">👨‍🏫 เกี่ยวกับผม</a>
+            <a href="#projects" class="menu-item">🎮 ผลงาน Roblox</a>
+            <a href="#contact" class="menu-item">✉️ ติดต่อเรา</a>
         </nav>
     </div>
 
     <!-- Main Content -->
     <div class="main-content" id="mainContent">
         
-        <!-- ส่วนที่ 1: หน้าแรก -->
         <section id="home">
             <div class="card" style="text-align: center; border: none; box-shadow: none; background: transparent;">
                 <h1>สวัสดีโบ! ผมปฏิภาณ</h1>
-                <p>ยินดีต้อนรับสู่ One-Page Portfolio แบบคลีนๆ</p>
-                <p>ลองกดที่ปุ่ม <b>"☰ เมนู"</b> มุมซ้ายบนเพื่อดูหัวข้อต่างๆ ได้เลยครับ</p>
+                <p>หน้าเว็ปนี้เป็นแบบ <b>One-Page</b> ที่เน้นความเรียบง่าย</p>
+                <p>กดเมนูเพื่อเลื่อนดูเนื้อหา โดยเมนูจะค้างไว้จนกว่าโบจะกดปิดเองครับ</p>
             </div>
         </section>
 
-        <!-- ส่วนที่ 2: เกี่ยวกับผม -->
         <section id="about" style="background: white;">
             <div class="card">
                 <h2>👨‍🏫 เกี่ยวกับผม</h2>
-                <p>ผมเป็นนักศึกษาคุรุศาสตร์คอมพิวเตอร์ ที่หลงใหลในเทคโนโลยีและการสร้างสรรค์เกม</p>
-                <p>การเขียนเว็บและพัฒนาเกมคือสิ่งที่ผมทำเพื่อฝึกฝนทักษะในการแก้ปัญหา และนำไปถ่ายทอดต่อให้กับนักเรียนในอนาคต</p>
+                <p>ผมเป็นนักศึกษาคุรุศาสตร์คอมพิวเตอร์ที่ชอบเล่นเกมและเขียนเว็ป</p>
+                <p>เป้าหมายคือการเป็นครูคอมที่สอนสนุกและเข้าใจเด็กยุคใหม่ครับ</p>
             </div>
         </section>
 
-        <!-- ส่วนที่ 3: ผลงาน -->
         <section id="projects" style="background: #f1f5f9;">
             <div class="card">
                 <h2>🎮 ผลงาน Roblox</h2>
                 <p><b>โปรเจกต์: ซอยตาพล้อย (Soi Ta Phloy)</b></p>
-                <p>เกมแนว Horror ผสมผสานบรรยากาศซอยไทยที่คุ้นเคย พัฒนาด้วย Roblox Studio</p>
                 <div style="background: #e2e8f0; height: 300px; border-radius: 15px; display: flex; align-items: center; justify-content: center; border: 2px dashed #cbd5e1; color: #94a3b8;">
-                    [ ใส่รูปภาพหรือคลิปวิดีโอเกมของโบตรงนี้ ]
+                    [ พื้นที่แสดงผลงานเกม ]
                 </div>
             </div>
         </section>
 
-        <!-- ส่วนที่ 4: ติดต่อ -->
         <section id="contact" style="background: white;">
             <div class="card">
                 <h2>✉️ ช่องทางการติดต่อ</h2>
-                <p>หากสนใจร่วมงานหรือสอบถามข้อมูลเพิ่มเติม สามารถติดต่อได้ที่:</p>
                 <ul style="list-style: none; padding: 0;">
                     <li>📍 <b>สถานที่:</b> อำเภอลานสกา, นครศรีธรรมราช</li>
                     <li>📧 <b>Email:</b> yourname@email.com</li>
-                    <li>📱 <b>Facebook:</b> Patipan (Nai)</li>
                 </ul>
             </div>
         </section>
 
     </div>
 
-    <!-- JavaScript ควบคุมการเปิด-ปิด -->
     <script>
         function toggleSidebar() {
             const sidebar = document.getElementById("mySidebar");
             const main = document.getElementById("mainContent");
             const btn = document.getElementById("btn");
 
-            // สลับคลาสเพื่อเปิด/ปิด
+            // Toggle คลาสเพื่อสลับสถานะ
             sidebar.classList.toggle("open");
             main.classList.toggle("pushed");
             btn.classList.toggle("active");
 
-            // เปลี่ยนข้อความบนปุ่ม
+            // เปลี่ยนคำบนปุ่ม
             if (sidebar.classList.contains("open")) {
                 btn.innerHTML = "✕ ปิด";
             } else {
