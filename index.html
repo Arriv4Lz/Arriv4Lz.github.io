@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arriv4Lz | Responsive Sidebar</title>
+    <title>Arriv4Lz | Smart Sidebar</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #2563eb;
             --dark: #1e293b;
-            --sidebar-width: 260px;
-            --sidebar-closed-width: 0px; /* ถ้าจะให้หายไปเลยใช้ 0px หรือจะเหลือแค่ไอคอนก็ได้ */
+            --sidebar-width: 280px;
         }
 
         body {
@@ -21,7 +20,7 @@
             transition: 0.3s;
         }
 
-        /* --- Sidebar Style --- */
+        /* --- Sidebar --- */
         .sidebar {
             width: var(--sidebar-width);
             height: 100vh;
@@ -29,54 +28,49 @@
             color: white;
             position: fixed;
             left: 0;
-            transition: 0.3s; /* ทำให้ตอนหุบดูนุ่มนวล */
-            overflow: hidden;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 1000;
+            box-shadow: 4px 0 10px rgba(0,0,0,0.1);
         }
 
-        /* คลาสที่จะถูกเติมด้วย JavaScript เพื่อสั่งหุบเมนู */
         .sidebar.closed {
             left: calc(var(--sidebar-width) * -1);
         }
 
-        .sidebar-content {
-            padding: 20px;
-            width: var(--sidebar-width);
+        .sidebar-header {
+            padding: 30px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        /* --- Main Content Style --- */
-        .main-content {
-            margin-left: var(--sidebar-width);
-            width: 100%;
-            padding: 40px;
-            transition: 0.3s;
-        }
-
-        /* เมื่อ Sidebar ปิด ให้ขยายพื้นที่เนื้อหาให้เต็มจอ */
-        .main-content.expand {
-            margin-left: 0;
-        }
-
-        /* --- ปุ่มเปิด/ปิด --- */
+        /* --- ปุ่มเปิด/ปิด (ตัวเอกของงานนี้) --- */
         .toggle-btn {
             position: fixed;
             left: 20px;
             top: 20px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.8); /* สีขาวจางๆ ตอนเมนูปิด */
+            color: var(--dark);
+            border: 1px solid #e2e8f0;
+            padding: 8px 15px;
             border-radius: 8px;
             cursor: pointer;
             z-index: 1100;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             font-family: 'Kanit';
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            font-weight: 600;
+        }
+
+        /* เมื่อกดเปิดเมนู: สั่งให้ปุ่มย้ายไปอยู่ขวาบนของเมนู และเปลี่ยนสี */
+        .toggle-btn.active {
+            left: calc(var(--sidebar-width) - 60px); /* ย้ายไปที่ขอบขวาของ Sidebar */
+            background: #334155; /* สีเข้มให้กลืนไปกับ Sidebar */
+            color: white;
+            border: none;
         }
 
         .menu-item {
-            padding: 12px 15px;
-            margin-bottom: 10px;
-            border-radius: 10px;
+            padding: 15px 25px;
             display: block;
             color: #cbd5e1;
             text-decoration: none;
@@ -85,54 +79,82 @@
 
         .menu-item:hover {
             background: #334155;
-            color: white;
+            color: #38bdf8;
+            padding-left: 35px;
+        }
+
+        /* --- Content --- */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            width: 100%;
+            padding: 40px;
+            transition: 0.4s;
+        }
+
+        .main-content.expand {
+            margin-left: 0;
         }
 
         .card {
             background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            margin-top: 60px; /* หลบปุ่ม Toggle */
+            padding: 30px;
+            border-radius: 20px;
+            margin-top: 50px;
+            animation: fadeIn 0.8s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
-    <!-- ปุ่มกดสำหรับสลับ เปิด/ปิด -->
-    <button class="toggle-btn" onclick="toggleSidebar()">☰ เมนู</button>
+    <!-- ปุ่มเปิด/ปิด -->
+    <button class="toggle-btn active" id="btn" onclick="toggleSidebar()">✕ ปิด</button>
 
     <!-- Sidebar -->
     <div class="sidebar" id="mySidebar">
-        <div class="sidebar-content">
-            <h2 style="color: #38bdf8;">Arriv4Lz OS</h2>
-            <hr style="border: 0.5px solid #334155;">
+        <div class="sidebar-header">
+            <h2 style="margin:0; color: #38bdf8;">Arriv4Lz</h2>
+        </div>
+        <nav>
             <a href="#" class="menu-item">🏠 หน้าแรก</a>
             <a href="#" class="menu-item">📁 ผลงานของฉัน</a>
             <a href="#" class="menu-item">🎮 Roblox Project</a>
             <a href="#" class="menu-item">⚙️ ตั้งค่า</a>
-        </div>
+        </nav>
     </div>
 
     <!-- Main Content -->
     <div class="main-content" id="mainContent">
         <div class="card">
-            <h1>ระบบ Sidebar แบบพับเก็บได้!</h1>
-            <p>ลองกดปุ่ม <b>"☰ เมนู"</b> ที่มุมซ้ายบนดูครับโบ ตัวเมนูจะหุบหายไป และเนื้อหาฝั่งขวาจะขยายเต็มจอโดยอัตโนมัติ</p>
-            <p>ฟีเจอร์นี้ช่วยให้ผู้ใช้งานมีสมาธิกับเนื้อหามากขึ้น (Focus Mode) และดูเป็นมืออาชีพสุดๆ</p>
+            <h1>จัดระเบียบใหม่ให้แล้วโบ!</h1>
+            <p>ตอนนี้ปุ่ม <b>"เมนู"</b> จะทำงานแบบฉลาดขึ้นครับ:</p>
+            <ul>
+                <li><b>ตอนเปิด:</b> ปุ่มจะกลายเป็นคำว่า "✕ ปิด" และย้ายตัวเองไปอยู่มุมขวาบนของแถบสีเข้ม ไม่ทับชื่อเว็บแล้ว</li>
+                <li><b>ตอนปิด:</b> ปุ่มจะกลับมาเป็นสีขาวจาง ๆ อยู่ที่มุมซ้ายบน เพื่อไม่ให้รบกวนสายตาโบเวลาอ่านเนื้อหา</li>
+            </ul>
         </div>
     </div>
 
-    <!-- ส่วนของ JavaScript (สมองของปุ่ม) -->
     <script>
         function toggleSidebar() {
-            // สั่งให้หา Sidebar และ Main Content
             const sidebar = document.getElementById("mySidebar");
             const main = document.getElementById("mainContent");
+            const btn = document.getElementById("btn");
 
-            // สั่งให้ "เพิ่ม" หรือ "เอาออก" คลาส closed และ expand
             sidebar.classList.toggle("closed");
             main.classList.toggle("expand");
+            btn.classList.toggle("active");
+
+            // เปลี่ยนข้อความปุ่มตามสถานะ
+            if (sidebar.classList.contains("closed")) {
+                btn.innerHTML = "☰ เมนู";
+            } else {
+                btn.innerHTML = "✕ ปิด";
+            }
         }
     </script>
 
