@@ -3,9 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arriv4Lz | Minimal Portfolio</title>
+    <title>Arriv4Lz | One Page Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
+        /* --- ตั้งค่าให้การเลื่อนหน้าจอนุ่มนวล --- */
+        html {
+            scroll-behavior: smooth;
+        }
+
         :root {
             --primary: #2563eb;
             --dark: #1e293b;
@@ -19,10 +24,9 @@
             display: flex;
             background-color: var(--bg-light);
             color: var(--dark);
-            transition: 0.3s;
         }
 
-        /* --- Sidebar (สีเข้มตัดกับพื้นหลังขาวจะดูโปรมาก) --- */
+        /* --- Sidebar (คงเดิม) --- */
         .sidebar {
             width: var(--sidebar-width);
             height: 100vh;
@@ -43,12 +47,14 @@
             border-bottom: 1px solid #334155;
         }
 
+        /* --- เมนู (เปลี่ยนเป็นลิงก์ไปยัง ID) --- */
         .menu-item {
             padding: 15px 25px;
             display: block;
             color: #cbd5e1;
             text-decoration: none;
             transition: 0.2s;
+            cursor: pointer;
         }
 
         .menu-item:hover {
@@ -57,7 +63,6 @@
             padding-left: 35px;
         }
 
-        /* --- ปุ่มเปิด/ปิด --- */
         .toggle-btn {
             position: fixed;
             left: 20px;
@@ -81,11 +86,10 @@
             border: none;
         }
 
-        /* --- Main Content --- */
+        /* --- Main Content Layout --- */
         .main-content {
             margin-left: var(--sidebar-width);
             width: 100%;
-            padding: 40px;
             transition: 0.4s;
         }
 
@@ -93,56 +97,89 @@
             margin-left: 0;
         }
 
-        /* กล่องเนื้อหาแบบคลีนๆ */
+        /* --- Section (แต่ละส่วนของหน้าเว็บ) --- */
+        section {
+            min-height: 100vh; /* ให้แต่ละส่วนมีความสูงเต็มหน้าจอ */
+            padding: 80px 40px;
+            box-sizing: border-box;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
         .card {
             background: white;
-            padding: 35px;
-            border-radius: 16px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            margin-bottom: 25px;
-            margin-top: 50px;
-            border: 1px solid #f1f5f9;
-            animation: slideUp 0.6s ease;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            max-width: 900px;
+            margin: 0 auto;
         }
 
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        h1 { color: var(--primary); font-size: 2.5rem; }
+        h2 { color: var(--primary); margin-bottom: 20px; }
+        p { line-height: 1.8; font-size: 1.1rem; }
 
-        h1 { color: var(--primary); }
     </style>
 </head>
 <body>
 
     <button class="toggle-btn active" id="btn" onclick="toggleSidebar()">✕ ปิด</button>
 
+    <!-- Sidebar -->
     <div class="sidebar" id="mySidebar">
         <div class="sidebar-header">
             <h2 style="margin:0; color: #38bdf8;">Arriv4Lz</h2>
         </div>
         <nav style="margin-top: 20px;">
-            <a href="#" class="menu-item">🏠 หน้าแรก</a>
-            <a href="#" class="menu-item">📁 ผลงานของฉัน</a>
-            <a href="#" class="menu-item">🎮 Roblox Project</a>
-            <a href="#" class="menu-item">✉️ ติดต่อเรา</a>
+            <!-- ใช้ # ตามด้วย ID ของ section นั้นๆ -->
+            <a href="#home" class="menu-item">🏠 หน้าแรก</a>
+            <a href="#about" class="menu-item">👨‍🏫 เกี่ยวกับผม</a>
+            <a href="#projects" class="menu-item">🎮 ผลงาน Roblox</a>
+            <a href="#contact" class="menu-item">✉️ ติดต่อเรา</a>
         </nav>
     </div>
 
+    <!-- Main Content -->
     <div class="main-content" id="mainContent">
-        <div class="card">
-            <h1>กลับสู่ความเรียบง่าย (Minimal Style)</h1>
-            <p>แบบนี้อ่านง่ายขึ้นเยอะเลยใช่ไหมโบ? พื้นหลังสีขาวสะอาดตาช่วยให้เนื้อหาดูเด่นและดูเป็นทางการมากขึ้นครับ</p>
-        </div>
+        
+        <!-- Section: หน้าแรก -->
+        <section id="home" style="display: flex; align-items: center; background: white;">
+            <div class="card" style="box-shadow: none; text-align: center;">
+                <h1>สวัสดีครับ ผมนายปฏิภาณ</h1>
+                <p>ยินดีต้อนรับเข้าสู่ One-Page Portfolio ของว่าที่ครูคอมพิวเตอร์ครับ</p>
+                <p>ไถหน้าจอลงเพื่อดูรายละเอียด หรือกดเมนูข้างๆ ได้เลยโบ!</p>
+            </div>
+        </section>
 
-        <div class="card">
-            <h2>ทำไมสไตล์นี้ถึงดี?</h2>
-            <ul>
-                <li><b>อ่านง่าย:</b> สบายตา ไม่ดึงความสนใจจากเนื้อหาหลัก</li>
-                <li><b>ดูเป็นมืออาชีพ:</b> เว็บพอร์ตโฟลิโอส่วนใหญ่นิยมใช้สีขาวเป็นหลักครับ</li>
-                <li><b>โหลดเร็ว:</b> ไม่ต้องรันเอฟเฟกต์เบลอเยอะๆ ทำให้เครื่องไม่หน่วง</li>
-            </ul>
-        </div>
+        <!-- Section: เกี่ยวกับผม -->
+        <section id="about">
+            <div class="card">
+                <h2>เกี่ยวกับผม</h2>
+                <p>ผมกำลังศึกษาด้านคุรุศาสตร์คอมพิวเตอร์ มีความสนใจในการนำเทคโนโลยีใหม่ๆ มาใช้ในการสอน...</p>
+                <p>เป้าหมายของผมคือการทำให้การเรียนคอมพิวเตอร์ไม่ใช่เรื่องน่าเบื่อสำหรับเด็กไทย</p>
+            </div>
+        </section>
+
+        <!-- Section: ผลงาน -->
+        <section id="projects" style="background: #f1f5f9;">
+            <div class="card">
+                <h2>ผลงาน Roblox: ซอยตาพล้อย</h2>
+                <p>นี่คือโปรเจกต์เกมสยองขวัญที่ผมกำลังพัฒนาอยู่ โดยใช้บรรยากาศซอยในไทยมาเป็นจุดเด่น...</p>
+                <div style="background: #ddd; height: 300px; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                    [ พื้นที่สำหรับใส่รูป/คลิปเกมของโบ ]
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: ติดต่อ -->
+        <section id="contact">
+            <div class="card">
+                <h2>ติดต่อผม</h2>
+                <p>อีเมล: example@email.com</p>
+                <p>Facebook: Patipan ...</p>
+                <p>สถานที่: นครศรีธรรมราช, ประเทศไทย</p>
+            </div>
+        </section>
+
     </div>
 
     <script>
