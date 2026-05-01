@@ -1,244 +1,40 @@
-<!DOCTYPE html>
-<html lang="th">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arriv4Lz | Modern Dark Mode</title>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        /* --- ตัวแปรสี (หัวใจของ Dark Mode) --- */
-        :root {
-            --primary: #2563eb;
-            --bg-body: #f8fafc;
-            --bg-card: #ffffff;
-            --text-main: #1e293b;
-            --text-sub: #475569;
-            --sidebar-bg: #3A2C78;
-            --border-color: #e2e8f0;
-            --sidebar-width: 280px;
-        }
+/* --- ปุ่มเปิด/ปิดเมนู (เวอร์ชันอัปเกรดอนิเมชัน) --- */
+.toggle-btn {
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    background: white; /* สีปกติคือสีขาว */
+    color: var(--dark);
+    border: 1px solid var(--border-color);
+    padding: 10px 22px;
+    border-radius: 12px;
+    cursor: pointer;
+    z-index: 1100;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* เพิ่มความเด้งตอนขยับ */
+    font-family: 'Kanit';
+    font-weight: 600;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
 
-        /* --- สีสำหรับโหมดมืด (Dark Mode) --- */
-        [data-theme="dark"] {
-            --bg-body: #0f172a;
-            --bg-card: #1e293b;
-            --text-main: #f1f5f9;
-            --text-sub: #cbd5e1;
-            --sidebar-bg: #191334;
-            --border-color: #334155;
-        }
+/* --- ตอนเอาเมาส์ไปชี้ปุ่ม (Hover) --- */
+.toggle-btn:hover {
+    background-color: #0EEB9A; /* สีเขียวที่โบเลือก */
+    color: #1e293b; 
+    transform: scale(1.1) rotate(2deg); /* ขยายใหญ่ขึ้นนิดนึงและเอียงหน่อยๆ ให้ดูขยับตอบสนอง */
+    box-shadow: 0 8px 15px rgba(14, 235, 154, 0.3); /* ใส่แสงฟุ้งสีเขียว */
+}
 
-        html { scroll-behavior: smooth; }
+/* --- เมื่อเมนูเปิดอยู่ (กลายเป็นปุ่มปิด) --- */
+.toggle-btn.active {
+    left: calc(var(--sidebar-width) - 75px);
+    background-color: #EB0E5F; /* สีชมพูแดงตอนจะกดปิด */
+    color: white;
+    border: none;
+}
 
-        body {
-            font-family: 'Kanit', sans-serif;
-            margin: 0;
-            display: flex;
-            background-color: var(--bg-body);
-            color: var(--text-main);
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        /* --- Sidebar --- */
-        .sidebar {
-            width: var(--sidebar-width);
-            height: 100vh;
-            background: var(--sidebar-bg);
-            color: white;
-            position: fixed;
-            left: calc(var(--sidebar-width) * -1); 
-            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 1000;
-            box-shadow: 4px 0 15px rgba(0,0,0,0.1);
-        }
-
-        .sidebar.open { left: 0; }
-
-        .menu-item {
-            padding: 15px 25px;
-            display: block;
-            color: #cbd5e1;
-            text-decoration: none;
-            transition: 0.2s;
-        }
-
-        .menu-item:hover {
-            background: rgba(255,255,255,0.1);
-            color: #38bdf8;
-            padding-left: 35px;
-        }
-
-        /* --- ปุ่มเปิด/ปิดเมนู --- */
-        .toggle-btn {
-            position: fixed;
-            left: 20px;
-            top: 20px;
-            background: var(--bg-card);
-            color: var(--text-main);
-            border: 1px solid var(--border-color);
-            padding: 10px 18px;
-            border-radius: 12px;
-            cursor: pointer;
-            z-index: 1100;
-            transition: 0.4s;
-            font-family: 'Kanit';
-            font-weight: 600;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-
-        .toggle-btn.active {
-            left: calc(var(--sidebar-width) - 75px);
-            background: var(--sidebar-bg);
-            color: white;
-        }
-
-        /* --- ปุ่ม Dark Mode (ทันสมัย) --- */
-        .theme-switch {
-            position: fixed;
-            right: 20px;
-            top: 20px;
-            background: var(--bg-card);
-            color: var(--text-main);
-            border: 1px solid var(--border-color);
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 1100;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            transition: 0.3s;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .theme-switch:hover {
-            transform: rotate(15deg) scale(1.1);
-        }
-
-        /* --- Content --- */
-        .main-content {
-            margin-left: 0;
-            width: 100%;
-            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .main-content.pushed { margin-left: var(--sidebar-width); }
-
-        section {
-            min-height: 100vh;
-            padding: 100px 20px;
-            box-sizing: border-box;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .card {
-            background: var(--bg-card);
-            padding: 40px;
-            border-radius: 24px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            max-width: 800px;
-            width: 100%;
-            border: 1px solid var(--border-color);
-            transition: 0.3s;
-        }
-
-        h1, h2 { color: var(--primary); }
-        p { color: var(--text-sub); line-height: 1.8; }
-
-        @media (max-width: 768px) {
-            .main-content.pushed { margin-left: 0; }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- ปุ่มเปิด/ปิดเมนู -->
-    <button class="toggle-btn" id="btn" onclick="toggleSidebar()">☰ เมนู</button>
-
-    <!-- ปุ่มสลับโหมด (พระอาทิตย์/พระจันทร์) -->
-    <button class="theme-switch" id="themeBtn" onclick="toggleTheme()">☀️</button>
-
-    <!-- Sidebar -->
-    <div class="sidebar" id="mySidebar">
-        <div style="padding: 30px; border-bottom: 1px solid rgba(255,255,255,0.1); text-align: center;">
-            <h2 style="margin:0; color: #38bdf8;">Arriv4Lz</h2>
-        </div>
-        <nav style="margin-top: 20px;">
-            <a href="#home" class="menu-item">🏠 หน้าแรก</a>
-            <a href="#about" class="menu-item">👨‍🏫 เกี่ยวกับผม</a>
-            <a href="#projects" class="menu-item">🎮 ผลงาน Roblox</a>
-            <a href="#contact" class="menu-item">✉️ ติดต่อเรา</a>
-        </nav>
-    </div>
-
-    <!-- Main Content -->
-    <div class="main-content" id="mainContent">
-        
-        <section id="home">
-            <div class="card" style="text-align: center; border: none; box-shadow: none; background: transparent;">
-                <h1>โหมดมืดมาแล้วโบ!</h1>
-                <p>ลองกดที่รูป <b>พระอาทิตย์</b> มุมขวาบนดูครับ</p>
-                <p>ดีไซน์นี้จะช่วยถนอมสายตา และทำให้เว็บโบดูเหมือนแอปเทพๆ เลย</p>
-            </div>
-        </section>
-
-        <section id="about">
-            <div class="card">
-                <h2>👨‍🏫 เกี่ยวกับผม</h2>
-                <p>เมื่อเปลี่ยนโหมด สีของการ์ดและพื้นหลังจะปรับให้อัตโนมัติ</p>
-                <p>นับเป็นเทคนิคพื้นฐานที่ครูคอมฯ ยุคใหม่ต้องมีติดเว็บไว้ครับ!</p>
-            </div>
-        </section>
-
-        <section id="projects" style="background: rgba(0,0,0,0.02);">
-            <div class="card">
-                <h2>🎮 ผลงาน Roblox</h2>
-                <p>โปรเจกต์เกม <b>ซอยตาพล้อย</b> จะดูหลอนขึ้นไปอีกใน Dark Mode!</p>
-                <div style="background: var(--bg-body); height: 200px; border-radius: 15px; border: 2px dashed var(--border-color); display: flex; align-items: center; justify-content: center;">
-                    [ Preview Game ]
-                </div>
-            </div>
-        </section>
-
-    </div>
-
-    <script>
-        // ฟังก์ชันควบคุม Sidebar
-        function toggleSidebar() {
-            const sidebar = document.getElementById("mySidebar");
-            const main = document.getElementById("mainContent");
-            const btn = document.getElementById("btn");
-
-            sidebar.classList.toggle("open");
-            main.classList.toggle("pushed");
-            btn.classList.toggle("active");
-
-            if (sidebar.classList.contains("open")) {
-                btn.innerHTML = "✕ ปิด";
-            } else {
-                btn.innerHTML = "☰ เมนู";
-            }
-        }
-
-        // ฟังก์ชันสลับ Dark Mode
-        function toggleTheme() {
-            const body = document.body;
-            const themeBtn = document.getElementById("themeBtn");
-            
-            // เช็กว่าปัจจุบันเป็นธีมอะไร
-            if (body.getAttribute("data-theme") === "dark") {
-                body.removeAttribute("data-theme");
-                themeBtn.innerHTML = "☀️"; // เปลี่ยนเป็นพระอาทิตย์
-            } else {
-                body.setAttribute("data-theme", "dark");
-                themeBtn.innerHTML = "🌙"; // เปลี่ยนเป็นพระจันทร์
-            }
-        }
-    </script>
-
-</body>
-</html>
+/* --- ตอนเอาเมาส์ไปชี้ปุ่มปิด (Hover Close) --- */
+.toggle-btn.active:hover {
+    background-color: #ff3b83; /* ให้สีชมพูสว่างขึ้นอีกนิดตอนชี้ */
+    transform: scale(1.1) rotate(-2deg); /* เอียงกลับอีกข้าง */
+    box-shadow: 0 8px 15px rgba(235, 14, 95, 0.4); /* ใส่แสงฟุ้งสีชมพู */
+}
