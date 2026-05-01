@@ -6,178 +6,177 @@
     <title>Arriv4Lz | Modern Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* --- CSS Variables สำหรับระบบสี --- */
-        :root {
-            --primary: #2563eb;
-            --bg-body: #f8fafc;
-            --bg-card: #ffffff;
-            --text-main: #1e293b;
-            --text-sub: #475569;
-            --sidebar-bg: #1e293b;
-            --border-color: #e2e8f0;
-            --sidebar-width: 280px;
-        }
+    /* --- CSS Variables - เปลี่ยนเป็นโทนม่วง --- */
+    :root {
+        --primary: #8b5cf6;       /* สีม่วงหลัก (สำหรับหัวข้อและปุ่ม) */
+        --primary-hover: #7c3aed; /* สีม่วงเข้มขึ้นตอน Hover */
+        --bg-body: #f8fafc;       /* พื้นหลังขาวเดิม */
+        --bg-card: #ffffff;       /* การ์ดขาวเดิม */
+        --text-main: #1e293b;
+        --text-sub: #475569;
+        --sidebar-bg: #2e1065;    /* พื้นหลังเมนูสีม่วงเข้มมาก (Deep Purple) */
+        --border-color: #e2e8f0;
+        --sidebar-width: 280px;
+    }
 
-        /* โหมดมืด (Dark Mode) */
-        [data-theme="dark"] {
-            --bg-body: #0f172a;
-            --bg-card: #1e293b;
-            --text-main: #f1f5f9;
-            --text-sub: #cbd5e1;
-            --sidebar-bg: #020617;
-            --border-color: #334155;
-        }
+    /* โหมดมืด (Dark Mode) - พื้นหลังเดิมแต่หัวข้อม่วงสว่าง */
+    [data-theme="dark"] {
+        --bg-body: #0f172a;       /* พื้นหลังเข้มเดิม */
+        --bg-card: #1e293b;       /* การ์ดเข้มเดิม */
+        --text-main: #f1f5f9;
+        --text-sub: #cbd5e1;
+        --sidebar-bg: #0f0720;    /* เมนูโหมดมืดม่วงเกือบดำ */
+        --border-color: #334155;
+    }
 
-        html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; }
 
-        body {
-            font-family: 'Kanit', sans-serif;
-            margin: 0;
-            display: flex;
-            background-color: var(--bg-body);
-            color: var(--text-main);
-            transition: background-color 0.3s, color 0.3s;
-            overflow-x: hidden;
-        }
+    body {
+        font-family: 'Kanit', sans-serif;
+        margin: 0;
+        display: flex;
+        background-color: var(--bg-body);
+        color: var(--text-main);
+        transition: background-color 0.3s, color 0.3s;
+        overflow-x: hidden;
+    }
 
-        /* --- Sidebar --- */
-        .sidebar {
-            width: var(--sidebar-width);
-            height: 100vh;
-            background: var(--sidebar-bg);
-            color: white;
-            position: fixed;
-            left: calc(var(--sidebar-width) * -1); 
-            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 1000;
-            box-shadow: 4px 0 15px rgba(0,0,0,0.1);
-        }
+    /* --- Sidebar --- */
+    .sidebar {
+        width: var(--sidebar-width);
+        height: 100vh;
+        background: var(--sidebar-bg);
+        color: white;
+        position: fixed;
+        left: calc(var(--sidebar-width) * -1); 
+        transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1000;
+        box-shadow: 4px 0 15px rgba(0,0,0,0.1);
+    }
 
-        .sidebar.open { left: 0; }
+    .sidebar.open { left: 0; }
 
-        .sidebar-header {
-            padding: 30px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            text-align: left;
-        }
+    .sidebar-header {
+        padding: 30px 20px;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        text-align: left; /* ชิดซ้ายตามที่โบต้องการ */
+    }
 
-        .menu-item {
-            padding: 15px 25px;
-            display: block;
-            color: #cbd5e1;
-            text-decoration: none;
-            transition: 0.2s;
-        }
+    .sidebar-header h2 {
+        margin: 0;
+        color: #a78bfa; /* สีม่วงอ่อนสำหรับชื่อเว็บ */
+        font-weight: 600;
+    }
 
-        .menu-item:hover {
-            background: rgba(255,255,255,0.1);
-            color: #38bdf8;
-            padding-left: 35px;
-        }
+    .menu-item {
+        padding: 15px 25px;
+        display: block;
+        color: #ddd6fe; /* สีตัวหนังสือเมนูม่วงจางๆ */
+        text-decoration: none;
+        transition: 0.2s;
+    }
 
-        /* --- ปุ่มเมนู Interactive (ที่โบสั่งแก้) --- */
-        .toggle-btn {
-            position: fixed;
-            left: 20px;
-            top: 20px;
-            background: white;
-            color: #1e293b;
-            border: 1px solid var(--border-color);
-            padding: 10px 22px;
-            border-radius: 12px;
-            cursor: pointer;
-            z-index: 1100;
-            font-family: 'Kanit';
-            font-weight: 600;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            /* เพิ่มความเด้งตอนขยับ */
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
+    .menu-item:hover {
+        background: rgba(139, 92, 246, 0.2);
+        color: #f5f3ff;
+        padding-left: 35px;
+    }
 
-        /* ตอนเมาส์ชี้ -> สีเขียว 0EEB9A และขยายเด้งๆ */
-        .toggle-btn:hover {
-            background-color: #0EEB9A;
-            transform: scale(1.1) rotate(2deg);
-            box-shadow: 0 8px 15px rgba(14, 235, 154, 0.4);
-        }
+    /* --- ปุ่มเมนู Interactive (สีตามโจทย์เดิม) --- */
+    .toggle-btn {
+        position: fixed;
+        left: 20px;
+        top: 20px;
+        background: white;
+        color: #1e293b;
+        border: 1px solid var(--border-color);
+        padding: 10px 22px;
+        border-radius: 12px;
+        cursor: pointer;
+        z-index: 1100;
+        font-family: 'Kanit';
+        font-weight: 600;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
 
-        /* เมื่อเปิดเมนู -> สีชมพูแดง EB0E5F */
-        .toggle-btn.active {
-            left: calc(var(--sidebar-width) + 25px);
-            background-color: #EB0E5F;
-            color: white;
-            border: none;
-        }
+    .toggle-btn:hover {
+        background-color: #0EEB9A; /* เขียวตอบสนองเหมือนเดิม */
+        transform: scale(1.1) rotate(2deg);
+        box-shadow: 0 8px 15px rgba(14, 235, 154, 0.4);
+    }
 
-        /* ตอนเมาส์ชี้ปุ่มปิด -> ขยายเด้งๆ อีกข้าง */
-        .toggle-btn.active:hover {
-            background-color: #ff3b83;
-            transform: scale(1.1) rotate(-2deg);
-            box-shadow: 0 8px 15px rgba(235, 14, 95, 0.5);
-        }
+    .toggle-btn.active {
+        left: calc(var(--sidebar-width) + 20px); /* กระโดดออกนอกเมนูตามสั่ง */
+        background-color: #EB0E5F; /* ชมพูแดงตอนกดปิดเหมือนเดิม */
+        color: white;
+        border: none;
+    }
 
-        /* --- ปุ่มสลับโหมด Dark/Light --- */
-        .theme-switch {
-            position: fixed;
-            right: 20px;
-            top: 20px;
-            background: var(--bg-card);
-            color: var(--text-main);
-            border: 1px solid var(--border-color);
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 1100;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            transition: 0.3s;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
+    .toggle-btn.active:hover {
+        background-color: #ff3b83;
+        transform: scale(1.1) rotate(-2deg);
+        box-shadow: 0 8px 15px rgba(235, 14, 95, 0.5);
+    }
 
-        .theme-switch:hover {
-            transform: rotate(15deg) scale(1.1);
-        }
+    /* --- ปุ่มสลับโหมด Dark/Light --- */
+    .theme-switch {
+        position: fixed;
+        right: 20px;
+        top: 20px;
+        background: var(--bg-card);
+        color: var(--text-main);
+        border: 1px solid var(--border-color);
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        cursor: pointer;
+        z-index: 1100;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        transition: 0.3s;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
 
-        /* --- Main Content --- */
-        .main-content {
-            margin-left: 0;
-            width: 100%;
-            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+    /* --- ส่วนเนื้อหา --- */
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+        transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 
-        .main-content.pushed { margin-left: var(--sidebar-width); }
+    .main-content.pushed { margin-left: var(--sidebar-width); }
 
-        section {
-            min-height: 100vh;
-            padding: 100px 20px;
-            box-sizing: border-box;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+    section {
+        min-height: 100vh;
+        padding: 100px 20px;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-        .card {
-            background: var(--bg-card);
-            padding: 40px;
-            border-radius: 24px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            max-width: 800px;
-            width: 100%;
-            border: 1px solid var(--border-color);
-            transition: 0.3s;
-        }
+    .card {
+        background: var(--bg-card);
+        padding: 40px;
+        border-radius: 24px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        max-width: 800px;
+        width: 100%;
+        border: 1px solid var(--border-color);
+        transition: 0.3s;
+    }
 
-        h1, h2 { color: var(--primary); }
-        p { color: var(--text-sub); line-height: 1.8; font-size: 1.1rem; }
+    h1, h2 { color: var(--primary); } /* หัวข้อทั้งหมดจะเป็นสีม่วง */
+    p { color: var(--text-sub); line-height: 1.8; font-size: 1.1rem; }
 
-        @media (max-width: 768px) {
-            .main-content.pushed { margin-left: 0; }
-            .toggle-btn.active { left: calc(var(--sidebar-width) - 70px); }
-        }
-    </style>
+    @media (max-width: 768px) {
+        .main-content.pushed { margin-left: 0; }
+        .toggle-btn.active { left: calc(var(--sidebar-width) + 10px); }
+    }
+</style>
 </head>
 <body>
 
