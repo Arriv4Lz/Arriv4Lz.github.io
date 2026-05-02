@@ -472,6 +472,43 @@ html {
     transform: translateY(0); /* ลอยกลับมาที่เดิม */
 }
 
+/* ตั้งค่าเริ่มต้นให้ทุกสไลด์จางหายไป */
+.about-slide {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+/* รูปไหนมีคลาส active ให้แสดงตัวออกมา */
+.about-slide.active {
+    opacity: 1 !important;
+}
+
+/* คอนเทนเนอร์คุมหิมะให้เต็มหน้าจอ */
+.snow-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+}
+.snow {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 50%;
+    top: -12px;
+    animation: fall linear infinite;
+    filter: blur(1px);
+    box-shadow: 0 0 12px rgba(255,255,255,0.8);
+}
+@keyframes fall {
+    0% { transform: translateY(0) translateX(0); opacity: 0; }
+    10% { opacity: 1; }
+    100% { transform: translateY(110vh) translateX(var(--drift, 0px)); opacity: 0; }
+}
+
+
 
 </style>
 </head>
@@ -501,7 +538,7 @@ html {
         </div>
         <nav style="margin-top: 20px;">
             <a href="#home" class="menu-item" onmouseenter="document.getElementById('shover').play();" onclick="document.getElementById('select').play();">🏠 หน้าแรก</a>
-            <a href="#about" class="menu-item" onmouseenter="document.getElementById('shover').play();" onclick="document.getElementById('select').play();">👨‍🏫 เกี่ยวกับผม</a>
+            <a href="#about" class="menu-item" onmouseenter="document.getElementById('shover').play();" onclick="document.getElementById('select').play();">👨‍🏫 ประวัติส่วนตัว</a>
             <a href="#projects" class="menu-item" onmouseenter="document.getElementById('shover').play();" onclick="document.getElementById('select').play();">🎮 ผลงาน Roblox</a>
             <a href="#contact" class="menu-item" onmouseenter="document.getElementById('shover').play();" onclick="document.getElementById('select').play();">✉️ ติดต่อเรา</a>
         </nav>
@@ -519,6 +556,7 @@ html {
                 <div class="bg-slide" style="background-image: url('img/main5.png');"></div>
                 <div class="bg-slide" style="background-image: url('img/main6.png');"></div>
             </div>
+            <div id="snow-container" class="snow-container"></div>
             <div class="hero-content" style="display: flex; flex-direction: column; justify-content: flex-end; align-items: center; height: 100vh; padding-bottom: 200px; text-align: center; border: none; box-shadow: none; background: transparent;">
                 <h1 style="color: white; font-size: 80px; margin: 0;">ยินดีต้อนรับเข้าสู่เว็บไซต์</h1>            
                 <h2 style="color: white; font-size: 50px; margin: 0;">จัดทำโดย</h2>                 
@@ -536,16 +574,45 @@ html {
 
         <section id="about" style="background: rgba(0,0,0,0.02);">
     <!-- เพิ่ม onclick เข้าไปตรงนี้ -->
-            <div class="card reveal">
-                <h2>👨‍🏫 เกี่ยวกับผม</h2>
-                <p>เน้นความคลีน แต่อัดแน่นด้วยลูกเล่นที่ตอบสนองผู้ใช้ (UX/UI)</p>
-                <p>เทสเทสเทส</p>
+            <div class="card reveal" style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center;">
                 
+                <div style="flex: 1.5; min-width: 300px;">
+                <h2>👨‍🏫 ประวัติส่วนตัว</h2>
+                <p>
+                <span style="color: #8b5cf6;"><b>ชื่อ : </b></span>
+                <span>นายปฏิภาณ มณีเขียว</span>
+                </p>   
+                <p>
+                <span style="color: #8b5cf6;"><b>ชื่อเล่น : </b></span>
+                <span>นาย</span>
+                </p>  
+                <p>
+                <span style="color: #8b5cf6;"><b>วันเกิด : </b></span>
+                <span>29 สิงหาคม พ.ศ. 2544</span>
+                </p>
+                <p>
+                <span style="color: #8b5cf6;"><b>อายุ : </b></span>
+                <span>24 ปี</span>
+                </p> 
+                <p>
+                <span style="color: #8b5cf6;"><b>สัญชาติ : </b></span>
+                <span>ไทย</span>
+                </p> 
+                </div>
+
+               
+                <div style="flex: 1; min-width: 250px; position: relative; height: 350px; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
+                    <div class="about-slide active" style="background-image: url('img/main1.png'); background-size: cover; background-position: center; background-repeat: no-repeat; position: absolute; inset: 0; transition: opacity 1s ease-in-out; image-rendering: -webkit-optimize-contrast;"></div>
+                    <div class="about-slide" style="background-image: url('img/main2.png'); background-size: cover; background-position: center; background-repeat: no-repeat; position: absolute; inset: 0; transition: opacity 1s ease-in-out; image-rendering: -webkit-optimize-contrast;"></div>
+                    <div class="about-slide" style="background-image: url('img/main3.png'); background-size: cover; background-position: center; background-repeat: no-repeat; position: absolute; inset: 0; transition: opacity 1s ease-in-out; image-rendering: -webkit-optimize-contrast;"></div>
+                    
+               
+                </div>
             </div>
         </section>
 
         <section id="projects">
-            <div class="card reveal">
+            <div class="card reveal" style="max-width: 1200px; width: 95%; margin: 20px auto;">
                 <h2>🎮 ผลงาน Roblox</h2>
                 <p>โปรเจกต์เกม <b>ซอยตาพล้อย</b></p>
                 <div style="background: var(--bg-body); height: 250px; border-radius: 15px; border: 2px dashed var(--border-color); display: flex; align-items: center; justify-content: center; color: var(--text-sub);">
@@ -555,7 +622,7 @@ html {
         </section>
 
         <section id="contact" style="background: rgba(0,0,0,0.02);">
-            <div class="card reveal">
+            <div class="card reveal" style="max-width: 1200px; width: 95%; margin: 20px auto;">
                 <h2>✉️ ช่องทางการติดต่อ</h2>
                 <p>📍 ลานสกา, นครศรีธรรมราช</p>
                 <p>📧 Email: yourname@email.com</p>
@@ -732,6 +799,74 @@ html {
             }
         });
 
+
+        // วางไว้ใน <script> ล่างสุดของไฟล์เลยครับ
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.about-slide');
+            let currentIndex = 0;
+
+            // ถ้าหา slides ไม่เจอเลย มันจะแจ้งเตือนใน Console (กด F12 ดูได้)
+            if (slides.length === 0) {
+                console.error("Bro! ผมหาคลาส .about-slide ไม่เจอ เช็คชื่อใน HTML หน่อย!");
+                return;
+            }
+
+            function nextSlide() {
+                // เอา active ออกจากตัวเดิม
+                slides[currentIndex].classList.remove('active');
+                
+                // ขยับไปตัวถัดไป
+                currentIndex = (currentIndex + 1) % slides.length;
+                
+                // ใส่ active ให้ตัวใหม่
+                slides[currentIndex].classList.add('active');
+            }
+
+            // เริ่มวนสไลด์ทุก 3 วินาที
+            setInterval(nextSlide, 3000);
+        });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const container = document.getElementById('snow-container');
+    const homeSection = document.getElementById('home');
+    const isHomePage = window.location.pathname.endsWith('index.html') ||
+                       window.location.pathname === '/' ||
+                       window.location.pathname === '/index.html';
+
+    if (!container || !homeSection || !isHomePage) {
+        if (container) container.style.display = 'none';
+        return;
+    }
+
+    const snowCount = 120;
+    for (let i = 0; i < snowCount; i++) {
+        const snow = document.createElement('div');
+        snow.className = 'snow';
+        const size = Math.random() * 4 + 2;
+        snow.style.width = `${size}px`;
+        snow.style.height = `${size}px`;
+        snow.style.left = `${Math.random() * 100}%`;
+        snow.style.top = `${Math.random() * -80}px`;
+        snow.style.animationDuration = `${Math.random() * 6 + 4}s`;
+        snow.style.animationDelay = `${Math.random() * 8}s`;
+        snow.style.opacity = `${Math.random() * 0.7 + 0.25}`;
+        snow.style.setProperty('--drift', `${Math.random() * 120 - 60}px`);
+        snow.style.filter = `blur(${Math.random() * 1.5}px)`;
+        container.appendChild(snow);
+    }
+
+    container.style.display = 'none';
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            container.style.display = entry.isIntersecting ? 'block' : 'none';
+        });
+    }, {
+        threshold: 0.25
+    });
+
+    observer.observe(homeSection);
+});
 
     </script>
     <audio id="sopen" src="sound/soundopen.mp3"></audio>
