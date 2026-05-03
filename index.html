@@ -41,6 +41,12 @@
         overflow-x: hidden;
     }
 
+    /* Responsive media */
+    video, iframe {
+        max-width: 100%;
+        height: auto;
+    }
+
     /* --- Sidebar --- */
     .sidebar {
         width: var(--sidebar-width);
@@ -395,7 +401,7 @@ html {
 /* อนิเมชั่นตอนเอาเมาส์ไปชี้ (Hover) เหมือนปุ่มหลัก */
 .back-to-top:hover {
     transform: scale(1.1); /* ขยายตัวเหมือนกัน */
-    background-color: #f0f0f0;
+    background-color: #0EEB9A;
     box-shadow: 0 6px 20px rgba(0,0,0,0.3);
 }
 
@@ -475,12 +481,33 @@ html {
 /* ตั้งค่าเริ่มต้นให้ทุกสไลด์จางหายไป */
 .about-slide {
     opacity: 0;
-    transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out, filter 0.4s ease, transform 0.4s ease;
+    cursor: pointer;
 }
 
 /* รูปไหนมีคลาส active ให้แสดงตัวออกมา */
 .about-slide.active {
     opacity: 1 !important;
+}
+
+/* Hover effect on active slide */
+.about-slide.active:hover {
+    filter: drop-shadow(0 0 30px rgba(139, 92, 246, 0.8)) brightness(1.1);
+    transform: scale(1.02);
+}
+
+.about-slides-container {
+    flex: 1;
+    min-width: 420px;
+    position: relative;
+    height: 500px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.about-slides-container:hover {
+    box-shadow: 0 15px 40px rgba(139, 92, 246, 0.3);
 }
 
 /* คอนเทนเนอร์คุมหิมะให้เต็มหน้าจอ */
@@ -506,6 +533,298 @@ html {
     0% { transform: translateY(0) translateX(0); opacity: 0; }
     10% { opacity: 1; }
     100% { transform: translateY(110vh) translateX(var(--drift, 0px)); opacity: 0; }
+}
+
+/* Educational Background Styles */
+.edu-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+    gap: 30px;
+    padding: 30px;
+    background: var(--bg-card);
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.edu-row:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+.edu-logo img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    border-radius: 15px;
+    border: 2px solid var(--border-color);
+}
+
+.edu-info h3 {
+    margin: 0 0 15px 0;
+    color: var(--primary);
+    font-size: 1.4em;
+}
+
+.edu-info p {
+    margin: 0 0 15px 0;
+    color: var(--text-sub);
+    line-height: 1.6;
+    font-size: 1.1em;
+}
+
+.degree-tag {
+    background: var(--primary);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 25px;
+    font-size: 0.9em;
+    font-weight: 600;
+    display: inline-block;
+}
+
+/* Project Image Styles */
+.project-image-wrapper {
+    position: relative;
+    height: 200px;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.project-image-wrapper:hover {
+    transform: scale(1.08) translateY(-8px);
+    box-shadow: 0 15px 35px rgba(139, 92, 246, 0.4);
+    filter: brightness(1.1);
+}
+
+.project-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.project-image-wrapper:hover img {
+    filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.6));
+}
+
+/* Contact section styles */
+.contact-card {
+    background: linear-gradient(135deg, rgba(255,255,255,0.96), rgba(247,240,255,0.95));
+    border: 1px solid rgba(139, 92, 246, 0.18);
+    box-shadow: 0 20px 60px rgba(139, 92, 246, 0.12);
+    padding: 40px;
+    border-radius: 30px;
+}
+
+.contact-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 28px;
+}
+
+.contact-header h2 {
+    margin: 0;
+    font-size: 2.4rem;
+}
+
+.contact-pill {
+    padding: 12px 20px;
+    border-radius: 999px;
+    background: rgba(139, 92, 246, 0.14);
+    color: var(--primary);
+    font-weight: 600;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 22px;
+}
+
+.contact-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 24px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid rgba(139, 92, 246, 0.14);
+    box-shadow: 0 16px 45px rgba(139, 92, 246, 0.08);
+    color: var(--text-main);
+    text-decoration: none;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.contact-link::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top left, rgba(139, 92, 246, 0.18), transparent 35%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.contact-link:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 26px 60px rgba(139, 92, 246, 0.18);
+    background: rgba(255, 255, 255, 1);
+}
+
+.contact-link:hover::before {
+    opacity: 1;
+}
+
+.contact-link:hover .contact-icon {
+    transform: scale(1.05);
+    box-shadow: 0 16px 30px rgba(139, 92, 246, 0.25);
+}
+
+.contact-icon {
+    width: 70px;
+    height: 70px;
+    min-width: 70px;
+    border-radius: 22px;
+    background: linear-gradient(135deg, #d8b4fe, #c084fc);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-icon img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+}
+
+.contact-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.contact-label {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.contact-description {
+    font-size: 0.98rem;
+    color: var(--text-sub);
+    line-height: 1.5;
+}
+
+@media (max-width: 720px) {
+    .contact-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* Image Viewer Modal */
+.image-viewer-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.95);
+    display: none;
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.image-viewer-modal.active {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+}
+
+.image-viewer-container {
+    position: relative;
+    width: 90%;
+    height: 90vh;
+    max-width: 1200px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 50px rgba(139, 92, 246, 0.3);
+}
+
+.image-viewer-content {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.image-viewer-content img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    cursor: grab;
+    user-select: none;
+}
+
+.image-viewer-content img:active {
+    cursor: grabbing;
+}
+
+.image-viewer-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 2001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.image-viewer-close:hover {
+    background: var(--primary-hover);
+    transform: scale(1.1);
+}
+
+.image-info {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+    font-size: 0.9em;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 10px 15px;
+    border-radius: 5px;
+    z-index: 2001;
 }
 
 
@@ -539,8 +858,10 @@ html {
         <nav style="margin-top: 20px;">
             <a href="#home" class="menu-item" onmouseenter="document.getElementById('shover').play();" onclick="document.getElementById('select').play();">🏠 หน้าแรก</a>
             <a href="#about" class="menu-item" onmouseenter="document.getElementById('shover').play();" onclick="document.getElementById('select').play();">👨‍🏫 ประวัติส่วนตัว</a>
-            <a href="#projects" class="menu-item" onmouseenter="document.getElementById('shover').play();" onclick="document.getElementById('select').play();">🎮 ผลงาน Roblox</a>
-            <a href="#contact" class="menu-item" onmouseenter="document.getElementById('shover').play();" onclick="document.getElementById('select').play();">✉️ ติดต่อเรา</a>
+            <a href="#about2" class="menu-item" onmouseenter="document.getElementById('shover').play();" onclick="document.getElementById('select').play();">👨🏾‍🎓 ประวัติการศึกษา</a>
+            <a href="#projects" class="menu-item" onmouseenter="document.getElementById('shover').play();" onclick="document.getElementById('select').play();">📁 ผลงานและกิจกรรมต่างๆ</a>
+            <a href="#hobby" class="menu-item" onmouseenter="document.getElementById('shover').play();" onclick="document.getElementById('select').play();">🎮 งานอดิเรกและความชอบ</a>
+            <a href="#contact" class="menu-item" onmouseenter="document.getElementById('shover').play();" onclick="document.getElementById('select').play();">📞 ช่องทางการติดต่อ</a>
         </nav>
     </div>
 
@@ -601,31 +922,684 @@ html {
                 </div>
 
                
-                <div style="flex: 1; min-width: 250px; position: relative; height: 350px; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
-                    <div class="about-slide active" style="background-image: url('img/main1.png'); background-size: cover; background-position: center; background-repeat: no-repeat; position: absolute; inset: 0; transition: opacity 1s ease-in-out; image-rendering: -webkit-optimize-contrast;"></div>
-                    <div class="about-slide" style="background-image: url('img/main2.png'); background-size: cover; background-position: center; background-repeat: no-repeat; position: absolute; inset: 0; transition: opacity 1s ease-in-out; image-rendering: -webkit-optimize-contrast;"></div>
-                    <div class="about-slide" style="background-image: url('img/main3.png'); background-size: cover; background-position: center; background-repeat: no-repeat; position: absolute; inset: 0; transition: opacity 1s ease-in-out; image-rendering: -webkit-optimize-contrast;"></div>
-                    
-               
+                <div class="about-slides-container" id="aboutSlidesContainer">
+                    <div class="about-slide active" data-main="img/gen1.png" data-hover="img/sgen1.jpg" style="background-image: url('img/gen1.png'); background-size: cover; background-position: center; background-repeat: no-repeat; position: absolute; inset: 0; transition: opacity 1s ease-in-out, filter 0.4s ease, transform 0.4s ease; image-rendering: -webkit-optimize-contrast;"></div>
+                    <div class="about-slide" data-main="img/gen2.png" data-hover="img/sgen2.jpg" style="background-image: url('img/gen2.png'); background-size: cover; background-position: center; background-repeat: no-repeat; position: absolute; inset: 0; transition: opacity 1s ease-in-out, filter 0.4s ease, transform 0.4s ease; image-rendering: -webkit-optimize-contrast;"></div>
+                    <div class="about-slide" data-main="img/gen3.png" data-hover="img/sgen3.jpg" style="background-image: url('img/gen3.png'); background-size: cover; background-position: center; background-repeat: no-repeat; position: absolute; inset: 0; transition: opacity 1s ease-in-out, filter 0.4s ease, transform 0.4s ease; image-rendering: -webkit-optimize-contrast;"></div>
+                    <div class="about-slide" data-main="img/gen4.png" data-hover="img/sgen4.jpg" style="background-image: url('img/gen4.png'); background-size: cover; background-position: center; background-repeat: no-repeat; position: absolute; inset: 0; transition: opacity 1s ease-in-out, filter 0.4s ease, transform 0.4s ease; image-rendering: -webkit-optimize-contrast;"></div>
+                    <div class="about-slide" data-main="img/gen5.png" data-hover="img/sgen5.jpg" style="background-image: url('img/gen5.png'); background-size: cover; background-position: center; background-repeat: no-repeat; position: absolute; inset: 0; transition: opacity 1s ease-in-out, filter 0.4s ease, transform 0.4s ease; image-rendering: -webkit-optimize-contrast;"></div>
+                    <div class="about-slide" data-main="img/gen6.png" data-hover="img/sgen6.jpg" style="background-image: url('img/gen6.png'); background-size: cover; background-position: center; background-repeat: no-repeat; position: absolute; inset: 0; transition: opacity 1s ease-in-out, filter 0.4s ease, transform 0.4s ease; image-rendering: -webkit-optimize-contrast;"></div>
+                </div>
+            </div>
+        </section>
+
+<section id="about2" style="background: rgba(0,0,0,0.02);">
+    <!-- เพิ่ม onclick เข้าไปตรงนี้ -->
+            <div class="card reveal" style="max-width: 1600px; width: 95%; margin: 20px auto;">
+                <h2>👨🏾‍🎓 ประวัติการศึกษา</h2>
+                <div class="edu-row reveal">
+                    <div class="edu-logo">
+                        <img src="img/nstru.png" alt="Institution 1">
+                    </div>
+                    <div class="edu-info">
+                        <h3>ปริญญาตรี</h3>
+                        <p><b>มหาวิทยาลัยราชภัฏนครศรีธรรมราช</b> - จบการศึกษาระดับปริญญาตรี คณะครุศาสตร์ สาขาวิชาคอมพิวเตอร์ ด้วยเกรดเฉลี่ย <span style="color: #8b5cf6;"><b>3.80</b></span></p>
+                        <span class="degree-tag">วุฒิ ป.ตรี</span>
+                    </div>
+                </div>
+                <div class="edu-row reveal">
+                    <div class="edu-logo">
+                        <img src="img/benjama.png" alt="Institution 2">
+                    </div>
+                    <div class="edu-info">
+                        <h3>มัธยมศึกษา</h3>
+                        <p><b>โรงเรียนเบญจมราชูทิศ</b> - จบการศึกษาระดับมัธยมศึกษา ด้วยเกรดเฉลี่ย <span style="color: #8b5cf6;"><b>2.65</b></span></p>
+                        <span class="degree-tag">ม. 1-6</span>
+                    </div>
+                </div>
+                <div class="edu-row reveal">
+                    <div class="edu-logo">
+                        <img src="img/bantalad.jpg" alt="Institution 3">
+                    </div>
+                    <div class="edu-info">
+                        <h3>ประถมศึกษา</h3>
+                        <p><b>โรงเรียนบ้านตลาด</b> - จบการศึกษาระดับประถมศึกษา ด้วยเกรดเฉลี่ย <span style="color: #8b5cf6;"><b>3.61</b></span></p>
+                        <span class="degree-tag">ป. 1-6</span>
+                    </div>
+                </div>
+                <div class="edu-row reveal">
+                    <div class="edu-logo">
+                        <img src="img/rujitam.jpg" alt="Institution 4">
+                    </div>
+                    <div class="edu-info">
+                        <h3>การศึกษาปฐมวัย</h3>
+                        <p><b>โรงเรียนรุจิธรรมวิทยา</b> - จบการศึกษาปฐมวัย</p>
+                        <span class="degree-tag">อนุบาล 1-3</span>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="projects">
-            <div class="card reveal" style="max-width: 1200px; width: 95%; margin: 20px auto;">
-                <h2>🎮 ผลงาน Roblox</h2>
-                <p>โปรเจกต์เกม <b>ซอยตาพล้อย</b></p>
-                <div style="background: var(--bg-body); height: 250px; border-radius: 15px; border: 2px dashed var(--border-color); display: flex; align-items: center; justify-content: center; color: var(--text-sub);">
-                    [ ใส่รูปภาพผลงานเกมของโบ ]
+            <div class="card reveal" style="max-width: 1500px; max-height: fit-content; width: 95%; margin: 20px auto;">
+                <h2>📁 ผลงานและกิจกรรมต่างๆ</h2>
+                <p>เริ่มต้นจากผลงานตั้งแต่สมัยเรียนมหาวิทยาลัย <span style="color: #8b5cf6;"><b>ลงโรงเรียนเพื่อพัฒนาความรู้ให้กับเด็กๆ</b></span></p>
+                <div style="background: var(--bg-body); min-height: 600px; padding: 40px 30px; border-radius: 15px; border: 2px dashed var(--border-color); display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: 40px; color: var(--text-sub);" >
+                    <!-- รูปที่ 1 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/c/c1.jpg" alt="Project 1">
+                    </div>
+
+                    <!-- รูปที่ 2 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/c/c2.jpg" alt="Project 2">
+                    </div>
+
+                    <!-- รูปที่ 3 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/d/d11.jpg" alt="Project 3">
+                    </div>
+
+                    <!-- รูปที่ 4 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/d/d10.jpg" alt="Project 4">
+                    </div>
+
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/d/d8.jpg" alt="Project 5">
+                    </div>
+
+                    <!-- รูปที่ 2 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/d/d6.jpg" alt="Project 6">
+                    </div>
+
+                    <!-- รูปที่ 3 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/d/d4.jpg" alt="Project 7">
+                    </div>
+
+                    <!-- รูปที่ 4 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/d/d2.jpg" alt="Project 8">
+                    </div>
+
+
+
                 </div>
+
+                <br><br>
+
+                <p>การเริ่มต้นเป็นนักศึกษาฝึกประสบการณ์วิชาชีพครู <span style="color: #8b5cf6;"><b>ทำแผนการสอนและสื่อการสอน</b></span> เพื่อใช้สอนนักเรียน</p>
+                <div style="background: var(--bg-body); min-height: 600px; padding: 40px 30px; border-radius: 15px; border: 2px dashed var(--border-color); display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: 40px; color: var(--text-sub);" >
+                    <!-- รูปที่ 1 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/e/e2.jpg" alt="Project 1">
+                    </div>
+
+                    <!-- รูปที่ 2 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/e/e4.jpg" alt="Project 2">
+                    </div>
+
+                    <!-- รูปที่ 3 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/e/e6.jpg" alt="Project 3">
+                    </div>
+
+                    <!-- รูปที่ 4 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/e/e9.jpg" alt="Project 4">
+                    </div>
+
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/e/e12.jpg" alt="Project 5">
+                    </div>
+
+                    <!-- รูปที่ 2 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/e/e15.jpg" alt="Project 6">
+                    </div>
+
+                    <!-- รูปที่ 3 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/e/e17.jpg" alt="Project 7">
+                    </div>
+
+                    
+
+                </div>
+
+                <br><br>   
+
+                <p>จัดกิจกรรมชมรมให้กับนักเรียน พานักเรียนไปทัศนศึกษา <span style="color: #8b5cf6;"><b>พิพิธภัณฑ์พื้นบ้านหนังตะลุง สุชาติ ทรัพย์สิน</b></span></p>
+                <div style="background: var(--bg-body); min-height: 600px; padding: 40px 30px; border-radius: 15px; border: 2px dashed var(--border-color); display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: 40px; color: var(--text-sub);" >
+                    <!-- รูปที่ 1 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/f/f119.jpg" alt="Project 1">
+                    </div>
+
+                    <!-- รูปที่ 2 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/f/f132.jpg" alt="Project 2">
+                    </div>
+
+                    <!-- รูปที่ 3 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/f/f144.jpg" alt="Project 3">
+                    </div>
+
+                    <!-- รูปที่ 4 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/f/f141.jpg" alt="Project 4">
+                    </div>
+
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/f/f11.jpg" alt="Project 5">
+                    </div>
+
+                    <!-- รูปที่ 2 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/f/f113.jpg" alt="Project 6">
+                    </div>
+
+                    <!-- รูปที่ 3 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/f/f110.jpg" alt="Project 7">
+                    </div>
+
+                    <!-- รูปที่ 4 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/f/f142.jpg" alt="Project 8">
+                    </div>
+
+                    <!-- รูปที่ 2 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/f/f149.jpg" alt="Project 6">
+                    </div>
+
+                    <!-- รูปที่ 3 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/f/f150.jpg" alt="Project 7">
+                    </div>
+
+                    <!-- รูปที่ 4 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/f/f130.jpg" alt="Project 8">
+                    </div>
+
+                    <!-- รูปที่ 2 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/f/f137.jpg" alt="Project 6">
+                    </div>
+
+                    <!-- รูปที่ 3 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/f/f152.jpg" alt="Project 7">
+                    </div>
+
+                    <!-- รูปที่ 4 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/f/f145.jpg" alt="Project 8">
+                    </div>
+
+
+                </div>
+
+                <br><br>
+
+                <p>การทำสื่อการเรียนการสอนด้วยเกม <span style="color: #8b5cf6;"><b>Roblox</b></span></p>
+                <div style="background: var(--bg-body); min-height: 200px; padding: 40px 30px; border-radius: 15px; border: 2px dashed var(--border-color); display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: 40px; color: var(--text-sub);" >
+                   <!-- รูปที่ 1 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/r/r1.png" alt="Project 1">
+                    </div>
+
+                    <!-- รูปที่ 2 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/r/r2.png" alt="Project 2">
+                    </div>
+
+                    <!-- รูปที่ 3 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/r/r3.png" alt="Project 3">
+                    </div>
+
+                    <!-- รูปที่ 1 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/r/r4.png" alt="Project 1">
+                    </div>
+
+                    <!-- รูปที่ 2 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/r/r5.png" alt="Project 2">
+                    </div>
+
+                    <!-- รูปที่ 3 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/r/r6.png" alt="Project 3">
+                    </div>
+                    
+                    <!-- รูปที่ 1 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/r/r7.png" alt="Project 1">
+                    </div>
+
+                    <!-- รูปที่ 2 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/r/r8.png" alt="Project 2">
+                    </div>
+
+                    <!-- รูปที่ 3 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/r/r9.png" alt="Project 3">
+                    </div>
+                    
+                    <!-- รูปที่ 1 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/r/r10.png" alt="Project 1">
+                    </div>
+
+                    <!-- รูปที่ 2 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/r/r11.png" alt="Project 2">
+                    </div>
+
+                    <!-- รูปที่ 3 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/r/r12.png" alt="Project 3">
+                    </div>
+                    
+                    <!-- รูปที่ 1 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/r/r13.png" alt="Project 1">
+                    </div>
+
+                    <!-- รูปที่ 2 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/r/r14.png" alt="Project 2">
+                    </div>
+
+                    <!-- รูปที่ 3 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/r/r15.png" alt="Project 3">
+                    </div>
+                    
+                    <!-- รูปที่ 1 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/r/r16.png" alt="Project 1">
+                    </div>
+
+                    <!-- รูปที่ 2 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/r/r17.png" alt="Project 2">
+                    </div>
+
+                    <!-- รูปที่ 3 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/r/r18.png" alt="Project 3">
+                    </div>
+                    
+                    <!-- รูปที่ 1 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/r/r19.png" alt="Project 1">
+                    </div>
+
+                    <!-- รูปที่ 2 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/r/r20.png" alt="Project 2">
+                    </div>
+
+                    <!-- รูปที่ 3 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/r/r21.png" alt="Project 3">
+                    </div>
+
+                    <!-- รูปที่ 1 -->
+                    <!-- รูปที่ 3 -->
+                    <div class="project-image-wrapper">
+                        <a href="https://www.roblox.com/th/games/15760995992/Python-Adventure" target="_blank"><img src="img/r/pyhov.png" alt="Project 3"></a>
+                    </div>
+
+
+                    
+                    
+                                  
+
+                </div>
+
+
+                <br><br>
+
+                <p>สร้างแผนการสอนและสื่อการสอน โดยนำ <span style="color: #8b5cf6;"><b>ความสามารถในด้านเทคโนโลยีเข้ามาใช้</b></span> ประกอบด้วย<span style="color: #8b5cf6;"><b> การสร้างสื่อการสอนด้วยเกม Roblox</b></span> และ <span style="color: #8b5cf6;"><b> การวัดผลการเรียนรู้ด้วยแบบฟอร์มออนไลน์ Google Form</b></span></p>
+                <div style="background: var(--bg-body); min-height: 600px; padding: 40px 30px; border-radius: 15px; border: 2px dashed var(--border-color); display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: 40px; color: var(--text-sub);" >
+                   <!-- รูปที่ 1 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/g/g7.jpg" alt="Project 1">
+                    </div>
+
+                    <!-- รูปที่ 2 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/g/g6.jpg" alt="Project 2">
+                    </div>
+
+                    <!-- รูปที่ 3 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/g/g4.jpg" alt="Project 3">
+                    </div>
+
+                    <!-- รูปที่ 4 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/g/g2.jpg" alt="Project 4">
+                    </div>
+
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/g/g1.jpg" alt="Project 5">
+                    </div>
+
+                    <!-- รูปที่ 2 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/g/g9.jpg" alt="Project 6">
+                    </div>
+
+                    <!-- รูปที่ 3 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/g/g10.jpg" alt="Project 7">
+                    </div>
+
+                    
+
+                </div>
+
+
+                <br><br>
+
+                <p>การฝึกฝนความสามารถให้นักเรียน เพื่อไปแข่งขันการสร้างเว็ปด้วย Adobe Dreamweaver ในงาน <span style="color: #8b5cf6;"><b>แข่งขันทักษะวิชาการ</b></span></p>
+                <div style="background: var(--bg-body); min-height: 200px; padding: 40px 30px; border-radius: 15px; border: 2px dashed var(--border-color); display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: 40px; color: var(--text-sub);" >
+                   <!-- รูปที่ 1 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/i/i11.jpg" alt="Project 1">
+                    </div>
+
+                    <!-- รูปที่ 2 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/i/i10.jpg" alt="Project 2">
+                    </div>
+
+                    <!-- รูปที่ 3 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/i/i12.jpg" alt="Project 3">
+                    </div>
+                                  
+
+                </div>
+                
             </div>
         </section>
 
-        <section id="contact" style="background: rgba(0,0,0,0.02);">
+        <!-- Image Viewer Modal -->
+        <div id="imageViewerModal" class="image-viewer-modal">
+            <div class="image-viewer-container">
+                <div class="image-viewer-content" id="imageViewerContent">
+                    <img id="viewerImage" src="" alt="Full view">
+                </div>
+                <button class="image-viewer-close" onclick="closeImageViewer()">✕</button>
+                <div class="image-info">💡 คลิกค้างสักครู่ แล้วลาก เพื่อเลื่อน | ใช้ลูกกลิ้งเมาส์ เพื่อ ซูม | กดปิดด้านขวาบน หรือ ปุ่ม ESC เพื่อออก</div>
+            </div>
+        </div>
+
+        <section id="hobby" style="background: rgba(0,0,0,0.02);">
             <div class="card reveal" style="max-width: 1200px; width: 95%; margin: 20px auto;">
-                <h2>✉️ ช่องทางการติดต่อ</h2>
-                <p>📍 ลานสกา, นครศรีธรรมราช</p>
-                <p>📧 Email: yourname@email.com</p>
+                <h2>🎮 งานอดิเรกและความชอบ</h2>
+                <h3 style="color: #8b5cf6;"><b>ทำความรู้จักกันสักหน่อย 🥰 </b></h3>
+               <p>สวัสดีครับ ก่อนอื่นเลย ขอบคุณที่กดเข้ามาดูเว็บไซต์ของผมมากๆ เลยนะครับ ผมตั้งใจทำมากๆ และใช้เวลาทำนานพอสมควรเลยครับ 🥹 เอาล่ะ!!! เรามาเริ่มกันเลยดีกว่าครับ... 
+
+จุดเริ่มต้นความชอบเกี่ยวกับคอมพิวเตอร์ของผม เกิดขึ้นตั้งแต่สมัยเด็ก ตอนที่ผมได้สัมผัสคอมพิวเตอร์ในที่ทำงานของพ่อเป็นครั้งแรก ตอนนั้นผมได้ลองเล่นเกมยิงรถถังเกมหนึ่ง ซึ่งในสมัยนั้นผมคิดว่ามันสนุกมาก จนทำให้ผมค่อนข้างติดเกมนั้นในระดับหนึ่งเลยครับ
+
+หลังจากนั้นด้วยความที่ชอบเล่นเกม ก็ทำให้ผมได้ใช้เวลาอยู่กับหน้าจอมากขึ้น จากตอนแรกที่แค่อยากหาเกมใหม่ๆ เล่น พอเริ่มโตขึ้น ความคิดของผมก็ค่อยๆ เปลี่ยนไป จากการหาความสนุก กลายเป็นการเริ่มศึกษาว่าคอมพิวเตอร์ทำงานยังไง มีส่วนประกอบอะไรบ้าง และมันสามารถทำอะไรได้อีกบ้างนอกเหนือจากแค่การเล่นเกม 
+
+นั่นคือจุดเริ่มต้นที่ทำให้ผมได้ลองผิดลองถูกกับอะไรหลายๆ อย่าง ไม่ว่าจะเป็นการลงโปรแกรมใหม่ๆ หรือการลองใช้โปรแกรมแปลกๆ ที่ไม่เคยเห็น ซึ่งโปรแกรมในช่วงนั้นที่ผมสนใจเป็นพิเศษคือ โปรแกรมตัดต่อรูปภาพและวิดีโอนั่นเองครับ ผมได้ลองทำอย่างอื่นนอกจากเล่นเกมครั้งแรกด้วยโปรแกรม <span style="color: #8b5cf6;"><b>Adobe Photoshop</b></span> โดยเริ่มจากการตัดต่อง่ายๆ เช่น การลบพื้นหลังออก หรือการย่อรูปให้ได้ขนาดที่ต้องการ พอเริ่มใช้งานจนชำนาญในระดับหนึ่ง ผมก็เริ่มมองหาความท้าทายใหม่ นั่นคือการลองหัดใช้โปรแกรมตัดต่อวิดีโอครับ 
+
+สมัยนั้นผมเริ่มฝึกจากโปรแกรม <span style="color: #8b5cf6;"><b>Sony Vegas Pro 17</b></span> ผมลองศึกษาและเริ่มทำอะไรง่ายๆ ซึ่งในตอนนั้นคลิปที่กำลังเป็นไวรัสคือ คลิปเพลงที่มีเส้นกราฟเสียง (Audio Spectrum) เหมือนกับในช่อง <span style="color: #8b5cf6;"><a href="https://www.youtube.com/@NoCopyrightSounds" target="_blank"><b>NCS</b></a></span> ผมเองก็ลองฝึกทำคลิปแบบนั้นดูเหมือนกัน ถึงผลงานแรกๆ จะออกมาไม่ได้ดีเท่าไหร่ แต่ผมมองว่าอย่างน้อยมันก็ได้เป็นการฝึกทักษะ ให้ตัวเองไปในตัวครับ 
+
+ผมฝึกทักษะพวกนี้มาเรื่อยๆ จนโต แม้จะมีบางช่วงที่ห่างหายไปบ้างเพราะต้องทุ่มเทให้กับการเรียนหรือกิจกรรมอื่นๆ แต่พื้นฐานเหล่านี้ก็ไม่ได้หายไปไหนครับ แม้แต่เว็บไซต์นี้เอง ก็เป็นส่วนหนึ่งของทักษะที่ผมเคยฝึกฝนมา ย้อนไปตอน ม.ต้น ผมมีโอกาสได้เรียนที่โรงเรียนเบญจมราชูทิศ ตอนนั้นผมได้เรียนวิชาเขียนเว็บไซต์ ซึ่งเริ่มต้นจากการใช้ภาษา <span style="color: #8b5cf6;"><b>HTML</b></span> เขียนผ่านโปรแกรม Notepad ใน Windows 
+
+ผมโชคดีที่ได้เรียนกับครูที่ดีมากๆ ท่านหนึ่ง ท่านสอนให้ผมสร้างเว็บอย่างง่าย และต่อยอดไปสู่การใช้โปรแกรม <span style="color: #8b5cf6;"><b>Adobe Dreamweaver</b></span> ซึ่งตอนนั้นผมรู้สึกว่าการสร้างเว็บเป็นเรื่องที่สนุกมากครับ แต่หลังจากนั้นไม่นานผมก็ต้องหยุดพักไปเพราะภาระหน้าที่ต่างๆ จนอาจจะมีหลงลืมไปบ้าง เว็บไซต์นี้จึงเป็นเหมือนการค่อยๆ รื้อฟื้นความรู้กลับมาอีกครั้ง 😂 ซึ่งโชคดีที่สมัยนี้มี AI เข้ามาช่วยแนะนำ ทำให้ผมประหยัดเวลาและสนุกกับการสร้างสรรค์ขึ้นเยอะเลยครับ</p>
+                   
+                <br><br>
+
+            <h3 style="color: #8b5cf6;"><b>งานอดิเรก </b></h3>
+            <p>การตัดต่อรูปภาพและวิดีโอ</p>
+            <div style="background: var(--bg-body); min-height: 200px; padding: 40px 30px; border-radius: 15px; border: 2px dashed var(--border-color); display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: 40px; color: var(--text-sub);" >
+                   <!-- รูปที่ 1 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/x/1.jpg" alt="Project 1">
+                    </div>
+
+                    <!-- รูปที่ 2 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/x/2.jpg" alt="Project 2">
+                    </div>
+
+                    <!-- รูปที่ 3 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/x/3.jpg" alt="Project 3">
+                    </div>
+                         
+                    <!-- รูปที่ 1 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/x/4.jpg" alt="Project 1">
+                    </div>
+
+                    <!-- รูปที่ 2 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/x/5.jpg" alt="Project 2">
+                    </div>
+
+                    <!-- รูปที่ 3 -->
+                    <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                        <img src="img/x/6.jpg" alt="Project 3">
+                    </div>
+                          
+
+                </div>
+                <p style="text-align: center;" >ผลงานช่วงกำลังหัดใช้โปรแกรมแรกๆ<span style="color: #8b5cf6;"> (การตัดต่อรูปภาพ) </span></p>
+
+                <br><br>
+
+                <div style="background: var(--bg-body); min-height: 200px; padding: 40px 30px; border-radius: 15px; border: 2px dashed var(--border-color); display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: 40px; color: var(--text-sub);" >
+                    
+                    <div class="project-image-wrapper">
+                        <video width="320" height="240" controls>
+                        <source src="img/x/7.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                        </video>
+                    </div>
+
+                    <div class="project-image-wrapper">
+                        <video width="320" height="240" controls>
+                        <source src="img/x/8.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                        </video>
+                    </div>
+
+                 </div>
+
+                 
+                    <p style="text-align: center;" >ผลงานช่วงกำลังหัดใช้โปรแกรมแรกๆ<span style="color: #8b5cf6;"> (การตัดต่อวิดีโอ) </span></p>
+
+                    <br><br>    
+
+                    <h3 style="color: #8b5cf6; text-align: center;"><b>ช่วงที่เริ่มมีประสบการณ์</b></h3>
+
+                    <div style="background: var(--bg-body); min-height: 200px; padding: 40px 30px; border-radius: 15px; border: 2px dashed var(--border-color); display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: 40px; color: var(--text-sub);" >
+                       
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/W_buaGWGkSM?si=PwQU_ZUcwrtZWodh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    
+                    
+                    </div>
+                    <p style="text-align: center;" >การตัดต่อคลิปรีวิวรถให้เพื่อน<span style="color: #8b5cf6;"> (ถ้าดูไม่ได้ กด ดูบน Youtube นะครับ 😓) </span></p>
+
+
+
+                    <div style="background: var(--bg-body); min-height: 200px; padding: 40px 30px; border-radius: 15px; border: 2px dashed var(--border-color); display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: 40px; color: var(--text-sub);" >
+                       
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/918tEJqwfHM?si=MreVaqSYAH157odL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    
+                    </div>
+                    <p style="text-align: center;" >การตัดต่อคลิปวีดีโอเกม Valorant <span style="color: #8b5cf6;">(มีการใส่เพลงประกอบ + effect เวลายิงได้)</span></p>
+                    
+                    <br><br>
+
+                    <h3 style="color: #8b5cf6; text-align: center;"><b>ความสามารถอย่างอื่น</b></h3>
+
+                        <p>มีความสามารถในการใช้โปรแกรมต่างๆต่อไปนี้</p>
+
+                    <div style="background: var(--bg-body); min-height: 200px; padding: 40px 30px; border-radius: 15px; border: 2px dashed var(--border-color); display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: 40px; color: var(--text-sub);" >
+                   
+                    <div class="project-image-wrapper">
+                        <img src="img/p/w.png" alt="Project 1">
+                    </div>
+
+                    <div class="project-image-wrapper">
+                        <img src="img/p/e.png" alt="Project 1">
+                    </div>
+
+                    <div class="project-image-wrapper">
+                        <img src="img/p/p.png" alt="Project 1">
+                    </div>
+
+                    <div class="project-image-wrapper">
+                        <img src="img/p/ps.png" alt="Project 1">
+                    </div>
+
+                    <div class="project-image-wrapper">
+                        <img src="img/p/pr.png" alt="Project 1">
+                    </div>
+
+                    <div class="project-image-wrapper">
+                        <img src="img/p/ae.png" alt="Project 1">
+                    </div>
+
+                    <div class="project-image-wrapper">
+                        <img src="img/p/canva.png" alt="Project 1">
+                    </div>
+
+                    <div class="project-image-wrapper">
+                        <img src="img/p/cap.png" alt="Project 1">
+                    </div>
+
+                    <div class="project-image-wrapper">
+                        <img src="img/p/ro.png" alt="Project 1">
+                    </div>
+
+                    
+                       
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+                
+
+
+                    <br><br><br><br>
+
+                    <h3 style="color: #8b5cf6;">ความชอบ</b></h3>
+                    <div class="interests-container">
+    
+                        <p>นอกจากเรื่องการเขียนเว็บไซต์และการตัดต่อวิดีโอที่เป็นทักษะหลักของผมแล้ว ชีวิตของผมยังมีความหลงใหลในด้านอื่นๆ ที่เป็นแรงบันดาลใจสำคัญอีกด้วยครับ</p>
+
+                        <div style="margin-top: 25px;">
+                            <h3 style="color: #8b5cf6;">🖥️ Tech Enthusiast</h3>
+                            <p>ผมเป็นคนที่อินกับเทคโนโลยีมากๆ ครับ เวลาว่างส่วนใหญ่ผมมักจะเข้าไปอยู่ในโลกของ <b>YouTube</b> เพื่ออัปเดตข่าวสารเกี่ยวกับเทคโนโลยี (Technology) ว่าตอนนี้โลกของเราพัฒนาไปถึงไหนแล้ว การได้เห็นนวัตกรรมใหม่ๆ ทำให้ผมรู้สึกตื่นเต้นและอยากพัฒนาตัวเองให้ทันโลกอยู่เสมอ ซึ่งจะมีช่องช่องนึงที่ผมมักจะเปิดดูอยู่เป็นประจำเลย นั่นก็คือช่อง <a href="https://www.youtube.com/@9arm." target="_blank" style="color: #8b5cf6; text-decoration: underline;"><b>9ARM</b></a></p>
+                           <div style="background: var(--bg-body); min-height: 200px; padding: 40px 30px; border-radius: 15px; border: 2px dashed var(--border-color); display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: 40px; color: var(--text-sub);" >
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/OV1-0er67lw?si=C77Gn5aiYA4rCNHU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                           </div>
+                        </div>
+
+                        <div style="margin-top: 25px;">
+                            <h3 style="color: #8b5cf6;">🏍️ Passion for Speed</h3>
+                            <p>อีกเรื่องที่ผมรักมากก็คือเรื่องรถครับ ผมชอบศึกษาเกี่ยวกับยานยนต์ ทั้งรถยนต์ทั่วไปที่ใช้ในชีวิตประจำวัน รถสปอร์ตที่เน้นสมรรถนะความเร็ว และที่คลั่งไคล้ที่สุดเลยก็คือ <b>Big Bike</b> ครับ</p>
+                            <div style="background: var(--bg-body); min-height: 200px; padding: 40px 30px; border-radius: 15px; border: 2px dashed var(--border-color); display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: 40px; color: var(--text-sub);" >
+             
+                                <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                                     <img src="img/x/r7.png" alt="Project 3">
+                                </div>
+
+                                <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                                     <img src="img/honda/2.jpg" alt="Project 3">
+                                </div>
+
+                                <div class="project-image-wrapper" onclick="openImageViewer(event)">
+                                     <img src="img/honda/4.jpg" alt="Project 3">
+                                </div>
+                                   
+                            </div>
+                            
+                            <ul style="list-style: none; padding-left: 0;">
+                                <li style="margin-bottom: 10px;">🏆 <b>Dream Bike:</b> รุ่นที่ผมชอบที่สุดและเป็นที่หนึ่งในใจคือ <span style="color: #8b5cf6;"><b>Yamaha R1</b></span> ครับ</li>
+                                <li style="margin-bottom: 10px;">🚀 <b>Future Goals:</b> รุ่นที่ผมตั้งเป้าหมายว่าอยากได้มาครอบครองคือ <span style="color: #8b5cf6;"><b>Honda CBR650R E-Clutch</b></span> และ <span style="color: #8b5cf6;"><b>Forza 350</b></span> เพื่อเอาไว้ขับขี่ใช้งานในสไตล์ที่แตกต่างกันครับ</li>
+                            </ul>
+                        </div>
+
+                        <p style="margin-top: 20px; font-style: italic; opacity: 0.8;">
+                            "การได้อยู่กับสิ่งที่รัก ไม่ว่าจะเป็นหน้าจอคอมพิวเตอร์หรือบนถนน คือความสุขที่ทำให้ผมมีพลังในการสร้างสรรค์สิ่งใหม่ๆ ต่อไปครับ"
+                        </p>
+                    </div>
+                    
+        </section>
+
+        <section id="contact" style="background: rgba(0,0,0,0.02);">
+            <div class="card reveal contact-card" style="max-width: 1200px; width: 95%; margin: 20px auto;">
+                <div class="contact-header">
+                    <div>
+                        <h2>📞 ช่องทางการติดต่อ</h2>
+                        <p style="margin: 10px 0 0; color: var(--text-sub);">เลือกช่องทางที่คุณต้องการ และกดปุ่มเพื่อติดต่อได้ทันที!</p>
+                    </div>
+                    <div class="contact-pill">ติดต่อสะดวกเพียงคลิ๊ก!</div>
+                </div>
+
+                <div class="contact-grid">
+                    <a class="contact-link" href="#" data-url="tel:+66950407190" onclick="handleContactClick(event)" onmouseenter="document.getElementById('shover').play();">
+                        <div class="contact-icon"><img src="img/ct/tel.png" alt="โทรศัพท์"></div>
+                        <div class="contact-copy">
+                            <span class="contact-label">โทรศัพท์</span>
+                            <span class="contact-description">คลิกเพื่อโทร (รองรับเฉพาะสมาร์ทโฟน)<br><span style="color: #8b5cf6;"> 095-040-7190</span></span>
+                        </div>
+                    </a>
+
+                    <a class="contact-link" href="#" data-url="https://line.me/ti/p/wSstPurouy" onclick="handleContactClick(event)" onmouseenter="document.getElementById('shover').play();">
+                        <div class="contact-icon"><img src="img/ct/line.png" alt="LINE"></div>
+                        <div class="contact-copy">
+                            <span class="contact-label">LINE</span>
+                            <span class="contact-description">กดเพื่อแอด LINE<br><span style="color: #8b5cf6;"> mr.ninerockzatep</span></span>
+                        </div>
+                    </a>
+
+                    <a class="contact-link" href="#" data-url="https://www.instagram.com/nine.yarkginshabu/" onclick="handleContactClick(event)" onmouseenter="document.getElementById('shover').play();">
+                        <div class="contact-icon"><img src="img/ct/ig.png" alt="Instagram"></div>
+                        <div class="contact-copy">
+                            <span class="contact-label">Instagram</span>
+                            <span class="contact-description">กดเพื่อเปิดโปรไฟล์ Instagram<br><span style="color: #8b5cf6;"> nine.yarkginshabu</span></span>
+                        </div>
+                    </a>
+
+                    <a class="contact-link" href="#" data-url="https://www.facebook.com/Arriv4Lz/" onclick="handleContactClick(event)" onmouseenter="document.getElementById('shover').play();">
+                        <div class="contact-icon"><img src="img/ct/face.png" alt="Facebook"></div>
+                        <div class="contact-copy">
+                            <span class="contact-label">Facebook</span>
+                            <span class="contact-description">กดเพื่อเปิดโปรไฟล์ Facebook<br><span style="color: #8b5cf6;"> Pathiphan Maneekhiao</span></span>
+                        </div>
+                    </a>
+                </div>
             </div>
         </section>
 
@@ -653,6 +1627,21 @@ html {
             } else {
                 btn.innerHTML = "☰ เมนู";
                 overlay.classList.remove("active");
+            }
+        }
+
+        function handleContactClick(event) {
+            event.preventDefault();
+            const link = event.currentTarget.dataset.url;
+            const sound = document.getElementById('select');
+            if (sound) {
+                sound.currentTime = 0;
+                sound.play();
+            }
+            if (link) {
+                window.open(link, '_blank');
+            } else {
+                console.log('Contact link not set yet.');
             }
         }
 
@@ -868,6 +1857,127 @@ document.addEventListener('DOMContentLoaded', function() {
     observer.observe(homeSection);
 });
 
+// Image Viewer Functionality
+let isImageViewerActive = false;
+let panStartX = 0;
+let panStartY = 0;
+let imageTranslateX = 0;
+let imageTranslateY = 0;
+let imageScale = 1;
+let isPanning = false;
+
+function openImageViewer(event) {
+    const img = event.currentTarget.querySelector('img');
+    const modal = document.getElementById('imageViewerModal');
+    const viewerImg = document.getElementById('viewerImage');
+    
+    viewerImg.src = img.src;
+    modal.classList.add('active');
+    isImageViewerActive = true;
+    
+    // Reset pan and zoom
+    imageTranslateX = 0;
+    imageTranslateY = 0;
+    imageScale = 1;
+    updateImageTransform();
+}
+
+function closeImageViewer() {
+    const modal = document.getElementById('imageViewerModal');
+    modal.classList.remove('active');
+    isImageViewerActive = false;
+    isPanning = false;
+}
+
+function updateImageTransform() {
+    const viewerImg = document.getElementById('viewerImage');
+    if (viewerImg) {
+        viewerImg.style.transform = `translate(-50%, -50%) translate(${imageTranslateX}px, ${imageTranslateY}px) scale(${imageScale})`;
+    }
+}
+
+// Mouse events for panning
+const imageViewerContent = document.getElementById('imageViewerContent');
+if (imageViewerContent) {
+    imageViewerContent.addEventListener('mousedown', (e) => {
+        if (!isImageViewerActive) return;
+        isPanning = true;
+        panStartX = e.clientX - imageTranslateX;
+        panStartY = e.clientY - imageTranslateY;
+        imageViewerContent.style.cursor = 'grabbing';
+    });
+    
+    document.addEventListener('mousemove', (e) => {
+        if (!isPanning || !isImageViewerActive) return;
+        imageTranslateX = e.clientX - panStartX;
+        imageTranslateY = e.clientY - panStartY;
+        updateImageTransform();
+    });
+    
+    document.addEventListener('mouseup', () => {
+        isPanning = false;
+        if (imageViewerContent) imageViewerContent.style.cursor = 'grab';
+    });
+    
+    // Wheel zoom
+    imageViewerContent.addEventListener('wheel', (e) => {
+        if (!isImageViewerActive) return;
+        e.preventDefault();
+        const zoomSpeed = 0.1;
+        const newScale = imageScale - (e.deltaY > 0 ? zoomSpeed : -zoomSpeed);
+        imageScale = Math.max(1, Math.min(newScale, 3));
+        updateImageTransform();
+    });
+}
+
+// Close modal on ESC key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isImageViewerActive) {
+        closeImageViewer();
+    }
+});
+
+// Close modal on background click
+const modal = document.getElementById('imageViewerModal');
+if (modal) {
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeImageViewer();
+        }
+    });
+}
+
+// Interactive Home Section Slides
+const aboutSlidesContainer = document.getElementById('aboutSlidesContainer');
+if (aboutSlidesContainer) {
+    const slides = aboutSlidesContainer.querySelectorAll('.about-slide');
+    let hoverActive = false;
+    
+    aboutSlidesContainer.addEventListener('mouseenter', () => {
+        hoverActive = true;
+        slides.forEach(slide => {
+            if (slide.classList.contains('active')) {
+                const hoverImage = slide.getAttribute('data-hover');
+                if (hoverImage) {
+                    slide.style.backgroundImage = `url('${hoverImage}')`;
+                }
+            }
+        });
+    });
+    
+    aboutSlidesContainer.addEventListener('mouseleave', () => {
+        hoverActive = false;
+        slides.forEach(slide => {
+            if (slide.classList.contains('active')) {
+                const mainImage = slide.getAttribute('data-main');
+                if (mainImage) {
+                    slide.style.backgroundImage = `url('${mainImage}')`;
+                }
+            }
+        });
+    });
+}
+
     </script>
     <audio id="sopen" src="sound/soundopen.mp3"></audio>
     <audio id="sclose" src="sound/soundclose.mp3"></audio>
@@ -877,5 +1987,6 @@ document.addEventListener('DOMContentLoaded', function() {
     <audio id="switchon" src="sound/switchon.mp3"></audio>
     <audio id="switchoff" src="sound/switchoff.mp3"></audio>
 
+    
 </body>
 </html>
