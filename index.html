@@ -851,7 +851,7 @@ html {
     <!-- Sidebar -->
     <div class="sidebar" id="mySidebar">
         <div class="sidebar-header">
-            <img src="img/ninefinish2.jpg" alt="Profile Picture" style="width: 140px; height: 140px; border-radius: 50%; margin: 20px auto 20px; display: block; object-fit: cover; object-position: center;">
+            <img loading="lazy" decoding="async" src="img/ninefinish2.jpg" alt="Profile Picture" style="width: 140px; height: 140px; border-radius: 50%; margin: 20px auto 20px; display: block; object-fit: cover; object-position: center;">
             <h1 style="margin:0; color: #ffffff; text-align: center;">ยินดีต้อนรับ!</h1>
             <b style="color: #ffffff; text-align: center; display: block; font-size: 20px;">นายปฏิภาณ มณีเขียว</b>
         </div>
@@ -870,12 +870,12 @@ html {
         
         <section id="home">
             <div class="bg-slider">
-                <div class="bg-slide active" style="background-image: url('img/main1.png');"></div>
-                <div class="bg-slide" style="background-image: url('img/main2.png');"></div>
-                <div class="bg-slide" style="background-image: url('img/main3.png');"></div>
-                <div class="bg-slide" style="background-image: url('img/main4.png');"></div>
-                <div class="bg-slide" style="background-image: url('img/main5.png');"></div>
-                <div class="bg-slide" style="background-image: url('img/main6.png');"></div>
+                <div class="bg-slide active" data-bg="img/main1.png" style="background-image: url('img/main1.png');"></div>
+                <div class="bg-slide" data-bg="img/main2.png" style="background-size: cover; background-position: center; background-repeat: no-repeat; position: absolute; inset: 0; transition: opacity 1s ease-in-out; z-index: 1;"></div>
+                <div class="bg-slide" data-bg="img/main3.png" style="background-size: cover; background-position: center; background-repeat: no-repeat; position: absolute; inset: 0; transition: opacity 1s ease-in-out; z-index: 1;"></div>
+                <div class="bg-slide" data-bg="img/main4.png" style="background-size: cover; background-position: center; background-repeat: no-repeat; position: absolute; inset: 0; transition: opacity 1s ease-in-out; z-index: 1;"></div>
+                <div class="bg-slide" data-bg="img/main5.png" style="background-size: cover; background-position: center; background-repeat: no-repeat; position: absolute; inset: 0; transition: opacity 1s ease-in-out; z-index: 1;"></div>
+                <div class="bg-slide" data-bg="img/main6.png" style="background-size: cover; background-position: center; background-repeat: no-repeat; position: absolute; inset: 0; transition: opacity 1s ease-in-out; z-index: 1;"></div>
             </div>
             <div id="snow-container" class="snow-container"></div>
             <div class="hero-content" style="display: flex; flex-direction: column; justify-content: flex-end; align-items: center; height: 100vh; padding-bottom: 200px; text-align: center; border: none; box-shadow: none; background: transparent;">
@@ -923,12 +923,12 @@ html {
 
                
                 <div class="about-slides-container" id="aboutSlidesContainer">
-                    <div class="about-slide active" data-main="img/gen1.png" data-hover="img/sgen1.jpg" style="background-image: url('img/gen1.png'); background-size: cover; background-position: center; background-repeat: no-repeat; position: absolute; inset: 0; transition: opacity 1s ease-in-out, filter 0.4s ease, transform 0.4s ease; image-rendering: -webkit-optimize-contrast;"></div>
-                    <div class="about-slide" data-main="img/gen2.png" data-hover="img/sgen2.jpg" style="background-image: url('img/gen2.png'); background-size: cover; background-position: center; background-repeat: no-repeat; position: absolute; inset: 0; transition: opacity 1s ease-in-out, filter 0.4s ease, transform 0.4s ease; image-rendering: -webkit-optimize-contrast;"></div>
-                    <div class="about-slide" data-main="img/gen3.png" data-hover="img/sgen3.jpg" style="background-image: url('img/gen3.png'); background-size: cover; background-position: center; background-repeat: no-repeat; position: absolute; inset: 0; transition: opacity 1s ease-in-out, filter 0.4s ease, transform 0.4s ease; image-rendering: -webkit-optimize-contrast;"></div>
-                    <div class="about-slide" data-main="img/gen4.png" data-hover="img/sgen4.jpg" style="background-image: url('img/gen4.png'); background-size: cover; background-position: center; background-repeat: no-repeat; position: absolute; inset: 0; transition: opacity 1s ease-in-out, filter 0.4s ease, transform 0.4s ease; image-rendering: -webkit-optimize-contrast;"></div>
-                    <div class="about-slide" data-main="img/gen5.png" data-hover="img/sgen5.jpg" style="background-image: url('img/gen5.png'); background-size: cover; background-position: center; background-repeat: no-repeat; position: absolute; inset: 0; transition: opacity 1s ease-in-out, filter 0.4s ease, transform 0.4s ease; image-rendering: -webkit-optimize-contrast;"></div>
-                    <div class="about-slide" data-main="img/gen6.png" data-hover="img/sgen6.jpg" style="background-image: url('img/gen6.png'); background-size: cover; background-position: center; background-repeat: no-repeat; position: absolute; inset: 0; transition: opacity 1s ease-in-out, filter 0.4s ease, transform 0.4s ease; image-rendering: -webkit-optimize-contrast;"></div>
+                    <div class="about-slide active" data-main="img/gen1.png" data-hover="img/sgen1.jpg" style="background-size: cover; background-position: center; background-repeat: no-repeat; position: absolute; inset: 0; transition: opacity 1s ease-in-out, filter 0.4s ease, transform 0.4s ease; image-rendering: -webkit-optimize-contrast;"></div>
+                    <div class="about-slide" data-main="img/gen2.png" data-hover="img/sgen2.jpg" style="background-size: cover; background-position: center; background-repeat: no-repeat; position: absolute; inset: 0; transition: opacity 1s ease-in-out, filter 0.4s ease, transform 0.4s ease; image-rendering: -webkit-optimize-contrast;"></div>
+                    <div class="about-slide" data-main="img/gen3.png" data-hover="img/sgen3.jpg" style="background-size: cover; background-position: center; background-repeat: no-repeat; position: absolute; inset: 0; transition: opacity 1s ease-in-out, filter 0.4s ease, transform 0.4s ease; image-rendering: -webkit-optimize-contrast;"></div>
+                    <div class="about-slide" data-main="img/gen4.png" data-hover="img/sgen4.jpg" style="background-size: cover; background-position: center; background-repeat: no-repeat; position: absolute; inset: 0; transition: opacity 1s ease-in-out, filter 0.4s ease, transform 0.4s ease; image-rendering: -webkit-optimize-contrast;"></div>
+                    <div class="about-slide" data-main="img/gen5.png" data-hover="img/sgen5.jpg" style="background-size: cover; background-position: center; background-repeat: no-repeat; position: absolute; inset: 0; transition: opacity 1s ease-in-out, filter 0.4s ease, transform 0.4s ease; image-rendering: -webkit-optimize-contrast;"></div>
+                    <div class="about-slide" data-main="img/gen6.png" data-hover="img/sgen6.jpg" style="background-size: cover; background-position: center; background-repeat: no-repeat; position: absolute; inset: 0; transition: opacity 1s ease-in-out, filter 0.4s ease, transform 0.4s ease; image-rendering: -webkit-optimize-contrast;"></div>
                 </div>
             </div>
         </section>
@@ -939,7 +939,7 @@ html {
                 <h2>👨🏾‍🎓 ประวัติการศึกษา</h2>
                 <div class="edu-row reveal">
                     <div class="edu-logo">
-                        <img src="img/nstru.png" alt="Institution 1">
+                        <img loading="lazy" decoding="async" src="img/nstru.png" alt="Institution 1">
                     </div>
                     <div class="edu-info">
                         <h3>ปริญญาตรี</h3>
@@ -949,7 +949,7 @@ html {
                 </div>
                 <div class="edu-row reveal">
                     <div class="edu-logo">
-                        <img src="img/benjama.png" alt="Institution 2">
+                        <img loading="lazy" decoding="async" src="img/benjama.png" alt="Institution 2">
                     </div>
                     <div class="edu-info">
                         <h3>มัธยมศึกษา</h3>
@@ -959,7 +959,7 @@ html {
                 </div>
                 <div class="edu-row reveal">
                     <div class="edu-logo">
-                        <img src="img/bantalad.jpg" alt="Institution 3">
+                        <img loading="lazy" decoding="async" src="img/bantalad.jpg" alt="Institution 3">
                     </div>
                     <div class="edu-info">
                         <h3>ประถมศึกษา</h3>
@@ -969,7 +969,7 @@ html {
                 </div>
                 <div class="edu-row reveal">
                     <div class="edu-logo">
-                        <img src="img/rujitam.jpg" alt="Institution 4">
+                        <img loading="lazy" decoding="async" src="img/rujitam.jpg" alt="Institution 4">
                     </div>
                     <div class="edu-info">
                         <h3>การศึกษาปฐมวัย</h3>
@@ -987,41 +987,41 @@ html {
                 <div style="background: var(--bg-body); min-height: 600px; padding: 40px 30px; border-radius: 15px; border: 2px dashed var(--border-color); display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: 40px; color: var(--text-sub);" >
                     <!-- รูปที่ 1 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/c/c1.jpg" alt="Project 1">
+                        <img loading="lazy" decoding="async" src="img/c/c1.jpg" alt="Project 1">
                     </div>
 
                     <!-- รูปที่ 2 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/c/c2.jpg" alt="Project 2">
+                        <img loading="lazy" decoding="async" src="img/c/c2.jpg" alt="Project 2">
                     </div>
 
                     <!-- รูปที่ 3 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/d/d11.jpg" alt="Project 3">
+                        <img loading="lazy" decoding="async" src="img/d/d11.jpg" alt="Project 3">
                     </div>
 
                     <!-- รูปที่ 4 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/d/d10.jpg" alt="Project 4">
+                        <img loading="lazy" decoding="async" src="img/d/d10.jpg" alt="Project 4">
                     </div>
 
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/d/d8.jpg" alt="Project 5">
+                        <img loading="lazy" decoding="async" src="img/d/d8.jpg" alt="Project 5">
                     </div>
 
                     <!-- รูปที่ 2 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/d/d6.jpg" alt="Project 6">
+                        <img loading="lazy" decoding="async" src="img/d/d6.jpg" alt="Project 6">
                     </div>
 
                     <!-- รูปที่ 3 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/d/d4.jpg" alt="Project 7">
+                        <img loading="lazy" decoding="async" src="img/d/d4.jpg" alt="Project 7">
                     </div>
 
                     <!-- รูปที่ 4 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/d/d2.jpg" alt="Project 8">
+                        <img loading="lazy" decoding="async" src="img/d/d2.jpg" alt="Project 8">
                     </div>
 
 
@@ -1034,36 +1034,36 @@ html {
                 <div style="background: var(--bg-body); min-height: 600px; padding: 40px 30px; border-radius: 15px; border: 2px dashed var(--border-color); display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: 40px; color: var(--text-sub);" >
                     <!-- รูปที่ 1 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/e/e2.jpg" alt="Project 1">
+                        <img loading="lazy" decoding="async" src="img/e/e2.jpg" alt="Project 1">
                     </div>
 
                     <!-- รูปที่ 2 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/e/e4.jpg" alt="Project 2">
+                        <img loading="lazy" decoding="async" src="img/e/e4.jpg" alt="Project 2">
                     </div>
 
                     <!-- รูปที่ 3 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/e/e6.jpg" alt="Project 3">
+                        <img loading="lazy" decoding="async" src="img/e/e6.jpg" alt="Project 3">
                     </div>
 
                     <!-- รูปที่ 4 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/e/e9.jpg" alt="Project 4">
+                        <img loading="lazy" decoding="async" src="img/e/e9.jpg" alt="Project 4">
                     </div>
 
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/e/e12.jpg" alt="Project 5">
+                        <img loading="lazy" decoding="async" src="img/e/e12.jpg" alt="Project 5">
                     </div>
 
                     <!-- รูปที่ 2 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/e/e15.jpg" alt="Project 6">
+                        <img loading="lazy" decoding="async" src="img/e/e15.jpg" alt="Project 6">
                     </div>
 
                     <!-- รูปที่ 3 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/e/e17.jpg" alt="Project 7">
+                        <img loading="lazy" decoding="async" src="img/e/e17.jpg" alt="Project 7">
                     </div>
 
                     
@@ -1076,71 +1076,71 @@ html {
                 <div style="background: var(--bg-body); min-height: 600px; padding: 40px 30px; border-radius: 15px; border: 2px dashed var(--border-color); display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: 40px; color: var(--text-sub);" >
                     <!-- รูปที่ 1 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/f/f119.jpg" alt="Project 1">
+                        <img loading="lazy" decoding="async" src="img/f/f119.jpg" alt="Project 1">
                     </div>
 
                     <!-- รูปที่ 2 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/f/f132.jpg" alt="Project 2">
+                        <img loading="lazy" decoding="async" src="img/f/f132.jpg" alt="Project 2">
                     </div>
 
                     <!-- รูปที่ 3 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/f/f144.jpg" alt="Project 3">
+                        <img loading="lazy" decoding="async" src="img/f/f144.jpg" alt="Project 3">
                     </div>
 
                     <!-- รูปที่ 4 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/f/f141.jpg" alt="Project 4">
+                        <img loading="lazy" decoding="async" src="img/f/f141.jpg" alt="Project 4">
                     </div>
 
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/f/f11.jpg" alt="Project 5">
+                        <img loading="lazy" decoding="async" src="img/f/f11.jpg" alt="Project 5">
                     </div>
 
                     <!-- รูปที่ 2 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/f/f113.jpg" alt="Project 6">
+                        <img loading="lazy" decoding="async" src="img/f/f113.jpg" alt="Project 6">
                     </div>
 
                     <!-- รูปที่ 3 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/f/f110.jpg" alt="Project 7">
+                        <img loading="lazy" decoding="async" src="img/f/f110.jpg" alt="Project 7">
                     </div>
 
                     <!-- รูปที่ 4 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/f/f142.jpg" alt="Project 8">
+                        <img loading="lazy" decoding="async" src="img/f/f142.jpg" alt="Project 8">
                     </div>
 
                     <!-- รูปที่ 2 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/f/f149.jpg" alt="Project 6">
+                        <img loading="lazy" decoding="async" src="img/f/f149.jpg" alt="Project 6">
                     </div>
 
                     <!-- รูปที่ 3 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/f/f150.jpg" alt="Project 7">
+                        <img loading="lazy" decoding="async" src="img/f/f150.jpg" alt="Project 7">
                     </div>
 
                     <!-- รูปที่ 4 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/f/f130.jpg" alt="Project 8">
+                        <img loading="lazy" decoding="async" src="img/f/f130.jpg" alt="Project 8">
                     </div>
 
                     <!-- รูปที่ 2 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/f/f137.jpg" alt="Project 6">
+                        <img loading="lazy" decoding="async" src="img/f/f137.jpg" alt="Project 6">
                     </div>
 
                     <!-- รูปที่ 3 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/f/f152.jpg" alt="Project 7">
+                        <img loading="lazy" decoding="async" src="img/f/f152.jpg" alt="Project 7">
                     </div>
 
                     <!-- รูปที่ 4 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/f/f145.jpg" alt="Project 8">
+                        <img loading="lazy" decoding="async" src="img/f/f145.jpg" alt="Project 8">
                     </div>
 
 
@@ -1152,113 +1152,113 @@ html {
                 <div style="background: var(--bg-body); min-height: 200px; padding: 40px 30px; border-radius: 15px; border: 2px dashed var(--border-color); display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: 40px; color: var(--text-sub);" >
                    <!-- รูปที่ 1 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/r/r1.png" alt="Project 1">
+                        <img loading="lazy" decoding="async" src="img/r/r1.png" alt="Project 1">
                     </div>
 
                     <!-- รูปที่ 2 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/r/r2.png" alt="Project 2">
+                        <img loading="lazy" decoding="async" src="img/r/r2.png" alt="Project 2">
                     </div>
 
                     <!-- รูปที่ 3 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/r/r3.png" alt="Project 3">
+                        <img loading="lazy" decoding="async" src="img/r/r3.png" alt="Project 3">
                     </div>
 
                     <!-- รูปที่ 1 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/r/r4.png" alt="Project 1">
+                        <img loading="lazy" decoding="async" src="img/r/r4.png" alt="Project 1">
                     </div>
 
                     <!-- รูปที่ 2 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/r/r5.png" alt="Project 2">
+                        <img loading="lazy" decoding="async" src="img/r/r5.png" alt="Project 2">
                     </div>
 
                     <!-- รูปที่ 3 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/r/r6.png" alt="Project 3">
+                        <img loading="lazy" decoding="async" src="img/r/r6.png" alt="Project 3">
                     </div>
                     
                     <!-- รูปที่ 1 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/r/r7.png" alt="Project 1">
+                        <img loading="lazy" decoding="async" src="img/r/r7.png" alt="Project 1">
                     </div>
 
                     <!-- รูปที่ 2 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/r/r8.png" alt="Project 2">
+                        <img loading="lazy" decoding="async" src="img/r/r8.png" alt="Project 2">
                     </div>
 
                     <!-- รูปที่ 3 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/r/r9.png" alt="Project 3">
+                        <img loading="lazy" decoding="async" src="img/r/r9.png" alt="Project 3">
                     </div>
                     
                     <!-- รูปที่ 1 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/r/r10.png" alt="Project 1">
+                        <img loading="lazy" decoding="async" src="img/r/r10.png" alt="Project 1">
                     </div>
 
                     <!-- รูปที่ 2 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/r/r11.png" alt="Project 2">
+                        <img loading="lazy" decoding="async" src="img/r/r11.png" alt="Project 2">
                     </div>
 
                     <!-- รูปที่ 3 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/r/r12.png" alt="Project 3">
+                        <img loading="lazy" decoding="async" src="img/r/r12.png" alt="Project 3">
                     </div>
                     
                     <!-- รูปที่ 1 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/r/r13.png" alt="Project 1">
+                        <img loading="lazy" decoding="async" src="img/r/r13.png" alt="Project 1">
                     </div>
 
                     <!-- รูปที่ 2 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/r/r14.png" alt="Project 2">
+                        <img loading="lazy" decoding="async" src="img/r/r14.png" alt="Project 2">
                     </div>
 
                     <!-- รูปที่ 3 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/r/r15.png" alt="Project 3">
+                        <img loading="lazy" decoding="async" src="img/r/r15.png" alt="Project 3">
                     </div>
                     
                     <!-- รูปที่ 1 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/r/r16.png" alt="Project 1">
+                        <img loading="lazy" decoding="async" src="img/r/r16.png" alt="Project 1">
                     </div>
 
                     <!-- รูปที่ 2 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/r/r17.png" alt="Project 2">
+                        <img loading="lazy" decoding="async" src="img/r/r17.png" alt="Project 2">
                     </div>
 
                     <!-- รูปที่ 3 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/r/r18.png" alt="Project 3">
+                        <img loading="lazy" decoding="async" src="img/r/r18.png" alt="Project 3">
                     </div>
                     
                     <!-- รูปที่ 1 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/r/r19.png" alt="Project 1">
+                        <img loading="lazy" decoding="async" src="img/r/r19.png" alt="Project 1">
                     </div>
 
                     <!-- รูปที่ 2 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/r/r20.png" alt="Project 2">
+                        <img loading="lazy" decoding="async" src="img/r/r20.png" alt="Project 2">
                     </div>
 
                     <!-- รูปที่ 3 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/r/r21.png" alt="Project 3">
+                        <img loading="lazy" decoding="async" src="img/r/r21.png" alt="Project 3">
                     </div>
 
                     <!-- รูปที่ 1 -->
                     <!-- รูปที่ 3 -->
                     <div class="project-image-wrapper">
-                        <a href="https://www.roblox.com/th/games/15760995992/Python-Adventure" target="_blank"><img src="img/r/pyhov.png" alt="Project 3"></a>
+                        <a href="https://www.roblox.com/th/games/15760995992/Python-Adventure" target="_blank"><img loading="lazy" decoding="async" src="img/r/pyhov.png" alt="Project 3"></a>
                     </div>
 
 
@@ -1275,36 +1275,36 @@ html {
                 <div style="background: var(--bg-body); min-height: 600px; padding: 40px 30px; border-radius: 15px; border: 2px dashed var(--border-color); display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: 40px; color: var(--text-sub);" >
                    <!-- รูปที่ 1 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/g/g7.jpg" alt="Project 1">
+                        <img loading="lazy" decoding="async" src="img/g/g7.jpg" alt="Project 1">
                     </div>
 
                     <!-- รูปที่ 2 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/g/g6.jpg" alt="Project 2">
+                        <img loading="lazy" decoding="async" src="img/g/g6.jpg" alt="Project 2">
                     </div>
 
                     <!-- รูปที่ 3 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/g/g4.jpg" alt="Project 3">
+                        <img loading="lazy" decoding="async" src="img/g/g4.jpg" alt="Project 3">
                     </div>
 
                     <!-- รูปที่ 4 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/g/g2.jpg" alt="Project 4">
+                        <img loading="lazy" decoding="async" src="img/g/g2.jpg" alt="Project 4">
                     </div>
 
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/g/g1.jpg" alt="Project 5">
+                        <img loading="lazy" decoding="async" src="img/g/g1.jpg" alt="Project 5">
                     </div>
 
                     <!-- รูปที่ 2 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/g/g9.jpg" alt="Project 6">
+                        <img loading="lazy" decoding="async" src="img/g/g9.jpg" alt="Project 6">
                     </div>
 
                     <!-- รูปที่ 3 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/g/g10.jpg" alt="Project 7">
+                        <img loading="lazy" decoding="async" src="img/g/g10.jpg" alt="Project 7">
                     </div>
 
                     
@@ -1318,17 +1318,17 @@ html {
                 <div style="background: var(--bg-body); min-height: 200px; padding: 40px 30px; border-radius: 15px; border: 2px dashed var(--border-color); display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: 40px; color: var(--text-sub);" >
                    <!-- รูปที่ 1 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/i/i11.jpg" alt="Project 1">
+                        <img loading="lazy" decoding="async" src="img/i/i11.jpg" alt="Project 1">
                     </div>
 
                     <!-- รูปที่ 2 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/i/i10.jpg" alt="Project 2">
+                        <img loading="lazy" decoding="async" src="img/i/i10.jpg" alt="Project 2">
                     </div>
 
                     <!-- รูปที่ 3 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/i/i12.jpg" alt="Project 3">
+                        <img loading="lazy" decoding="async" src="img/i/i12.jpg" alt="Project 3">
                     </div>
                                   
 
@@ -1341,7 +1341,7 @@ html {
         <div id="imageViewerModal" class="image-viewer-modal">
             <div class="image-viewer-container">
                 <div class="image-viewer-content" id="imageViewerContent">
-                    <img id="viewerImage" src="" alt="Full view">
+                    <img loading="lazy" decoding="async" id="viewerImage" src="" alt="Full view">
                 </div>
                 <button class="image-viewer-close" onclick="closeImageViewer()">✕</button>
                 <div class="image-info">💡 คลิกค้างสักครู่ แล้วลาก เพื่อเลื่อน | ใช้ลูกกลิ้งเมาส์ เพื่อ ซูม | กดปิดด้านขวาบน หรือ ปุ่ม ESC เพื่อออก</div>
@@ -1373,32 +1373,32 @@ html {
             <div style="background: var(--bg-body); min-height: 200px; padding: 40px 30px; border-radius: 15px; border: 2px dashed var(--border-color); display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: 40px; color: var(--text-sub);" >
                    <!-- รูปที่ 1 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/x/1.jpg" alt="Project 1">
+                        <img loading="lazy" decoding="async" src="img/x/1.jpg" alt="Project 1">
                     </div>
 
                     <!-- รูปที่ 2 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/x/2.jpg" alt="Project 2">
+                        <img loading="lazy" decoding="async" src="img/x/2.jpg" alt="Project 2">
                     </div>
 
                     <!-- รูปที่ 3 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/x/3.jpg" alt="Project 3">
+                        <img loading="lazy" decoding="async" src="img/x/3.jpg" alt="Project 3">
                     </div>
                          
                     <!-- รูปที่ 1 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/x/4.jpg" alt="Project 1">
+                        <img loading="lazy" decoding="async" src="img/x/4.jpg" alt="Project 1">
                     </div>
 
                     <!-- รูปที่ 2 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/x/5.jpg" alt="Project 2">
+                        <img loading="lazy" decoding="async" src="img/x/5.jpg" alt="Project 2">
                     </div>
 
                     <!-- รูปที่ 3 -->
                     <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                        <img src="img/x/6.jpg" alt="Project 3">
+                        <img loading="lazy" decoding="async" src="img/x/6.jpg" alt="Project 3">
                     </div>
                           
 
@@ -1410,14 +1410,14 @@ html {
                 <div style="background: var(--bg-body); min-height: 200px; padding: 40px 30px; border-radius: 15px; border: 2px dashed var(--border-color); display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: 40px; color: var(--text-sub);" >
                     
                     <div class="project-image-wrapper">
-                        <video width="320" height="240" controls>
+                        <video width="320" height="240" controls preload="none">
                         <source src="img/x/7.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                         </video>
                     </div>
 
                     <div class="project-image-wrapper">
-                        <video width="320" height="240" controls>
+                        <video width="320" height="240" controls preload="none">
                         <source src="img/x/8.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                         </video>
@@ -1434,7 +1434,7 @@ html {
 
                     <div style="background: var(--bg-body); min-height: 200px; padding: 40px 30px; border-radius: 15px; border: 2px dashed var(--border-color); display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: 40px; color: var(--text-sub);" >
                        
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/W_buaGWGkSM?si=PwQU_ZUcwrtZWodh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe loading="lazy" width="560" height="315" src="https://www.youtube.com/embed/W_buaGWGkSM?si=PwQU_ZUcwrtZWodh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     
                     
                     </div>
@@ -1444,7 +1444,7 @@ html {
 
                     <div style="background: var(--bg-body); min-height: 200px; padding: 40px 30px; border-radius: 15px; border: 2px dashed var(--border-color); display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: 40px; color: var(--text-sub);" >
                        
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/918tEJqwfHM?si=MreVaqSYAH157odL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe loading="lazy" width="560" height="315" src="https://www.youtube.com/embed/918tEJqwfHM?si=MreVaqSYAH157odL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     
                     </div>
                     <p style="text-align: center;" >การตัดต่อคลิปวีดีโอเกม Valorant <span style="color: #8b5cf6;">(มีการใส่เพลงประกอบ + effect เวลายิงได้)</span></p>
@@ -1458,39 +1458,39 @@ html {
                     <div style="background: var(--bg-body); min-height: 200px; padding: 40px 30px; border-radius: 15px; border: 2px dashed var(--border-color); display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: 40px; color: var(--text-sub);" >
                    
                     <div class="project-image-wrapper">
-                        <img src="img/p/w.png" alt="Project 1">
+                        <img loading="lazy" decoding="async" src="img/p/w.png" alt="Project 1">
                     </div>
 
                     <div class="project-image-wrapper">
-                        <img src="img/p/e.png" alt="Project 1">
+                        <img loading="lazy" decoding="async" src="img/p/e.png" alt="Project 1">
                     </div>
 
                     <div class="project-image-wrapper">
-                        <img src="img/p/p.png" alt="Project 1">
+                        <img loading="lazy" decoding="async" src="img/p/p.png" alt="Project 1">
                     </div>
 
                     <div class="project-image-wrapper">
-                        <img src="img/p/ps.png" alt="Project 1">
+                        <img loading="lazy" decoding="async" src="img/p/ps.png" alt="Project 1">
                     </div>
 
                     <div class="project-image-wrapper">
-                        <img src="img/p/pr.png" alt="Project 1">
+                        <img loading="lazy" decoding="async" src="img/p/pr.png" alt="Project 1">
                     </div>
 
                     <div class="project-image-wrapper">
-                        <img src="img/p/ae.png" alt="Project 1">
+                        <img loading="lazy" decoding="async" src="img/p/ae.png" alt="Project 1">
                     </div>
 
                     <div class="project-image-wrapper">
-                        <img src="img/p/canva.png" alt="Project 1">
+                        <img loading="lazy" decoding="async" src="img/p/canva.png" alt="Project 1">
                     </div>
 
                     <div class="project-image-wrapper">
-                        <img src="img/p/cap.png" alt="Project 1">
+                        <img loading="lazy" decoding="async" src="img/p/cap.png" alt="Project 1">
                     </div>
 
                     <div class="project-image-wrapper">
-                        <img src="img/p/ro.png" alt="Project 1">
+                        <img loading="lazy" decoding="async" src="img/p/ro.png" alt="Project 1">
                     </div>
 
                     
@@ -1521,7 +1521,7 @@ html {
                             <h3 style="color: #8b5cf6;">🖥️ Tech Enthusiast</h3>
                             <p>ผมเป็นคนที่อินกับเทคโนโลยีมากๆ ครับ เวลาว่างส่วนใหญ่ผมมักจะเข้าไปอยู่ในโลกของ <b>YouTube</b> เพื่ออัปเดตข่าวสารเกี่ยวกับเทคโนโลยี (Technology) ว่าตอนนี้โลกของเราพัฒนาไปถึงไหนแล้ว การได้เห็นนวัตกรรมใหม่ๆ ทำให้ผมรู้สึกตื่นเต้นและอยากพัฒนาตัวเองให้ทันโลกอยู่เสมอ ซึ่งจะมีช่องช่องนึงที่ผมมักจะเปิดดูอยู่เป็นประจำเลย นั่นก็คือช่อง <a href="https://www.youtube.com/@9arm." target="_blank" style="color: #8b5cf6; text-decoration: underline;"><b>9ARM</b></a></p>
                            <div style="background: var(--bg-body); min-height: 200px; padding: 40px 30px; border-radius: 15px; border: 2px dashed var(--border-color); display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: 40px; color: var(--text-sub);" >
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/OV1-0er67lw?si=C77Gn5aiYA4rCNHU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                                <iframe loading="lazy" width="560" height="315" src="https://www.youtube.com/embed/OV1-0er67lw?si=C77Gn5aiYA4rCNHU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                            </div>
                         </div>
 
@@ -1531,15 +1531,15 @@ html {
                             <div style="background: var(--bg-body); min-height: 200px; padding: 40px 30px; border-radius: 15px; border: 2px dashed var(--border-color); display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: 40px; color: var(--text-sub);" >
              
                                 <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                                     <img src="img/x/r7.png" alt="Project 3">
+                                     <img loading="lazy" decoding="async" src="img/x/r7.png" alt="Project 3">
                                 </div>
 
                                 <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                                     <img src="img/honda/2.jpg" alt="Project 3">
+                                     <img loading="lazy" decoding="async" src="img/honda/2.jpg" alt="Project 3">
                                 </div>
 
                                 <div class="project-image-wrapper" onclick="openImageViewer(event)">
-                                     <img src="img/honda/4.jpg" alt="Project 3">
+                                     <img loading="lazy" decoding="async" src="img/honda/4.jpg" alt="Project 3">
                                 </div>
                                    
                             </div>
@@ -1569,7 +1569,7 @@ html {
 
                 <div class="contact-grid">
                     <a class="contact-link" href="#" data-url="tel:+66950407190" onclick="handleContactClick(event)" onmouseenter="document.getElementById('shover').play();">
-                        <div class="contact-icon"><img src="img/ct/tel.png" alt="โทรศัพท์"></div>
+                        <div class="contact-icon"><img loading="lazy" decoding="async" src="img/ct/tel.png" alt="โทรศัพท์"></div>
                         <div class="contact-copy">
                             <span class="contact-label">โทรศัพท์</span>
                             <span class="contact-description">คลิกเพื่อโทร (รองรับเฉพาะสมาร์ทโฟน)<br><span style="color: #8b5cf6;"> 095-040-7190</span></span>
@@ -1577,7 +1577,7 @@ html {
                     </a>
 
                     <a class="contact-link" href="#" data-url="https://line.me/ti/p/wSstPurouy" onclick="handleContactClick(event)" onmouseenter="document.getElementById('shover').play();">
-                        <div class="contact-icon"><img src="img/ct/line.png" alt="LINE"></div>
+                        <div class="contact-icon"><img loading="lazy" decoding="async" src="img/ct/line.png" alt="LINE"></div>
                         <div class="contact-copy">
                             <span class="contact-label">LINE</span>
                             <span class="contact-description">กดเพื่อแอด LINE<br><span style="color: #8b5cf6;"> mr.ninerockzatep</span></span>
@@ -1585,7 +1585,7 @@ html {
                     </a>
 
                     <a class="contact-link" href="#" data-url="https://www.instagram.com/nine.yarkginshabu/" onclick="handleContactClick(event)" onmouseenter="document.getElementById('shover').play();">
-                        <div class="contact-icon"><img src="img/ct/ig.png" alt="Instagram"></div>
+                        <div class="contact-icon"><img loading="lazy" decoding="async" src="img/ct/ig.png" alt="Instagram"></div>
                         <div class="contact-copy">
                             <span class="contact-label">Instagram</span>
                             <span class="contact-description">กดเพื่อเปิดโปรไฟล์ Instagram<br><span style="color: #8b5cf6;"> nine.yarkginshabu</span></span>
@@ -1593,7 +1593,7 @@ html {
                     </a>
 
                     <a class="contact-link" href="#" data-url="https://www.facebook.com/Arriv4Lz/" onclick="handleContactClick(event)" onmouseenter="document.getElementById('shover').play();">
-                        <div class="contact-icon"><img src="img/ct/face.png" alt="Facebook"></div>
+                        <div class="contact-icon"><img loading="lazy" decoding="async" src="img/ct/face.png" alt="Facebook"></div>
                         <div class="contact-copy">
                             <span class="contact-label">Facebook</span>
                             <span class="contact-description">กดเพื่อเปิดโปรไฟล์ Facebook<br><span style="color: #8b5cf6;"> Pathiphan Maneekhiao</span></span>
@@ -1714,11 +1714,21 @@ html {
 
             slides[currentSlide].classList.remove('active');
             currentSlide = (currentSlide + 1) % slides.length;
+            const next = slides[currentSlide];
+            if (next && !next.style.backgroundImage) {
+                const bg = next.dataset.bg;
+                if (bg) next.style.backgroundImage = `url('${bg}')`;
+            }
             slides[currentSlide].classList.add('active');
         }
 
         window.addEventListener('DOMContentLoaded', () => {
             // เริ่มเล่นทันทีเมื่อหน้าโหลดเสร็จ
+            const activeBg = document.querySelector('.bg-slide.active');
+            if (activeBg && !activeBg.style.backgroundImage) {
+                const bg = activeBg.dataset.bg;
+                if (bg) activeBg.style.backgroundImage = `url('${bg}')`;
+            }
             setInterval(nextSlide, 5000); // แสดงภาพแต่ละภาพ 4 วินาที + เปลี่ยน 1 วินาที
         });
 
@@ -1789,34 +1799,49 @@ html {
         });
 
 
-        // วางไว้ใน <script> ล่างสุดของไฟล์เลยครับ
+        // Lazy-load about section backgrounds and keep snow creation deferred.
         document.addEventListener('DOMContentLoaded', function() {
             const slides = document.querySelectorAll('.about-slide');
             let currentIndex = 0;
 
-            // ถ้าหา slides ไม่เจอเลย มันจะแจ้งเตือนใน Console (กด F12 ดูได้)
+            function loadAboutSlideBackground(slide) {
+                if (!slide) return;
+                const bg = slide.dataset.main;
+                if (bg && !slide.style.backgroundImage) {
+                    slide.style.backgroundImage = `url('${bg}')`;
+                }
+            }
+
             if (slides.length === 0) {
                 console.error("Bro! ผมหาคลาส .about-slide ไม่เจอ เช็คชื่อใน HTML หน่อย!");
                 return;
             }
 
+            loadAboutSlideBackground(document.querySelector('.about-slide.active'));
+
             function nextSlide() {
-                // เอา active ออกจากตัวเดิม
                 slides[currentIndex].classList.remove('active');
-                
-                // ขยับไปตัวถัดไป
                 currentIndex = (currentIndex + 1) % slides.length;
-                
-                // ใส่ active ให้ตัวใหม่
-                slides[currentIndex].classList.add('active');
+                const next = slides[currentIndex];
+                if (next) {
+                    loadAboutSlideBackground(next);
+                    next.classList.add('active');
+                }
             }
 
-            // เริ่มวนสไลด์ทุก 3 วินาที
             setInterval(nextSlide, 3000);
         });
 
-document.addEventListener('DOMContentLoaded', function() {
-    const container = document.getElementById('snow-container');
+        function loadBgSlideBackground(slide) {
+            if (!slide) return;
+            const bg = slide.dataset.bg;
+            if (bg && !slide.style.backgroundImage) {
+                slide.style.backgroundImage = `url('${bg}')`;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('snow-container');
     const homeSection = document.getElementById('home');
     const isHomePage = window.location.pathname.endsWith('index.html') ||
                        window.location.pathname === '/' ||
@@ -1827,7 +1852,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
-    const snowCount = 120;
+    const snowCount = 60;
     for (let i = 0; i < snowCount; i++) {
         const snow = document.createElement('div');
         snow.className = 'snow';
@@ -1979,13 +2004,13 @@ if (aboutSlidesContainer) {
 }
 
     </script>
-    <audio id="sopen" src="sound/soundopen.mp3"></audio>
-    <audio id="sclose" src="sound/soundclose.mp3"></audio>
-    <audio id="shover" src="sound/soundhover.mp3"></audio>
-    <audio id="select" src="sound/selectsound.mp3"></audio>
-    <audio id="switch" src="sound/soundswitch.mp3"></audio>
-    <audio id="switchon" src="sound/switchon.mp3"></audio>
-    <audio id="switchoff" src="sound/switchoff.mp3"></audio>
+    <audio preload="none" id="sopen" src="sound/soundopen.mp3"></audio>
+    <audio preload="none" id="sclose" src="sound/soundclose.mp3"></audio>
+    <audio preload="none" id="shover" src="sound/soundhover.mp3"></audio>
+    <audio preload="none" id="select" src="sound/selectsound.mp3"></audio>
+    <audio preload="none" id="switch" src="sound/soundswitch.mp3"></audio>
+    <audio preload="none" id="switchon" src="sound/switchon.mp3"></audio>
+    <audio preload="none" id="switchoff" src="sound/switchoff.mp3"></audio>
 
     
 </body>
